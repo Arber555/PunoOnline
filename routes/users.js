@@ -73,4 +73,11 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), function(
     res.json({user: req.user});
 });
 
+//test me mar ni user permes ID
+router.get('/:id', function(req, res, next){
+    User.getUserById(req.params.id, function(err, user){
+        res.json(user);
+    })
+});
+
 module.exports = router;
