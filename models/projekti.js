@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
 //Projekti Schema
@@ -16,18 +15,18 @@ const ProjektiSchema = mongoose.Schema({
     },
     buxheti_projektit: 
     {
-        type: double,
-        required: true
+        type: Number,
+       required: true
     },
     koha_projektit: 
     {
-        type: int //koha qe nevojitet per me kry ni prijekt
+        type: Date //koha qe nevojitet per me kry ni prijekt
     },
     menyra_pageses: 
     {
         lloji_pageses:  
         {  // lloji pageses mundet me kon me ore, me dit, me jave, me muaj apo i tere projektit (fiks)
-            name: string,
+            name: String,
             required: true
         }
     },
@@ -42,4 +41,4 @@ const ProjektiSchema = mongoose.Schema({
 
 });
 
-const User = module.exports = mongoose.model('User', UserSchema);
+const Projekti = module.exports = mongoose.model('Projekti', ProjektiSchema);
