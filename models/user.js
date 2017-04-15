@@ -38,6 +38,10 @@ const UserSchema = mongoose.Schema({
     datalindjes: {
         type: Date,
         required: true
+    },
+    statuesi: {
+        type: Boolean,
+        required: true
     }
 });
 
