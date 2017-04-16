@@ -22,14 +22,46 @@ const ProjektiSchema = mongoose.Schema({
     {
         type: Date //koha qe nevojitet per me kry ni prijekt
     },
-    menyra_pageses: 
+
+    /*menyra_pageses: 
     {
         lloji_pageses:  
         {  // lloji pageses mundet me kon me ore, me dit, me jave, me muaj apo i tere projektit (fiks)
             name: String,
             required: true
         }
+    },*/
+
+    pagesa_fikse: {
+        type: Boolean,
+        default: false,
+        required: false,
     },
+
+    pagesa_ore: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+
+    pagesa_ditore: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+
+    pagesa_javore: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+
+    pagesa_mujore: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+
     kategoria: 
     {
         type: Mongoose.Schema.Types.ObjectId, ref:'Kategoria'
@@ -42,3 +74,4 @@ const ProjektiSchema = mongoose.Schema({
 });
 
 const Projekti = module.exports = mongoose.model('Projekti', ProjektiSchema);
+

@@ -47,3 +47,7 @@ module.exports.addProfile = function(newProfile, callback){
 module.exports.getProfileById = function(profileID, callback){
     Profile.findById(profileID, callback);
 }
+
+module.exports.updateProfile = function(id, updateProfile, callback){
+    Profile.update({_id: mongoose.Types.ObjectId(id)}, updateProfile, callback);
+}
