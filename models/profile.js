@@ -31,7 +31,12 @@ const ProfileSchema = mongoose.Schema({
     userID:{
         type: mongoose.Schema.Types.ObjectId, 
         ref:'User'
-    }
+    },
+    /*portfolioID: [{ //testuese
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'portfolio',
+        required: false
+    }]*/
 });
 
 const Profile = module.exports = mongoose.model('Profile', ProfileSchema);

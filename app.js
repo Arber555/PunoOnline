@@ -24,6 +24,8 @@ const app = express();
 const users = require('./routes/users');
 const profiles =require('./routes/profiles'); 
 const professions = require('./routes/professions');
+const categorys = require('./routes/categorys');
+const portfolios = require('./routes/portfolios');
 
 //Port Number
 const port = 3000;
@@ -46,9 +48,11 @@ require('./config/passport')(passport);
 app.use('/users', users);
 app.use('/profiles', profiles);
 app.use('/professions', professions);
+app.use('/categorys', categorys);
+app.use('/portfolios', portfolios);
 
 app.get('/', function(req, res){
-    res.send("testtt");
+  res.send("testtt");
 })
 
 //start server

@@ -6,7 +6,7 @@ const config = require('../config/database');
 //const User = require('../models/user');
 const Profile = require('../models/profile');
 const Profession = require('../models/profession');
-
+const Portfolio = require('../models/portfolio');
 
 //create Profile
 router.post('/create',  passport.authenticate('jwt', {session: false}), function(req, res, next){
@@ -64,7 +64,50 @@ router.put('/:id', function(req, res, next){  //duhet me kqyr per validim mi tre
     const profileID = req.params.id;
     const profile = req.body;
     const professionName = req.body.profesioni;
+    
+    /*const portfolio = req.body.portfolio;
+    if(portfolio) //update nese ka portfolio
+    {
+        let newPortfolio = new Portfolio(req.body.portfolio);
+        for(var port in newPortfolio)
+        {
 
+        }
+        Portfolio.addPortfolio(newPortfolio, function(err, portfolio){ // nese ki 2 ose ma shum qysh don mi shti?????
+            if(err){
+                 throw err;
+            }
+
+            if(!portfolio)
+            {
+                return res.json({success: false, msg: 'Portfolio gabim'});
+            }
+            
+             Profession.getProfessionByName(professionName, function(err, profession){
+                if(err){
+                    throw err;
+                }
+
+                if(!profession){
+                    return res.json({success: false, msg: 'Zgjidh profesionin'});
+                }
+
+                profile.profesioni = profession.id;
+                profile.portfolioID = portfolio.id;
+                Profile.updateProfile(profileID, profile, function(err, profile){
+                    if(err){
+                        res.json(err);
+                        res.json({success: false, msg:'Failed to update profile!'});
+                    }
+                    else {
+                        res.json({success: true, msg:'Profile update'});
+                    }
+                });
+            });
+        });
+    }
+    else
+    {*/
     Profession.getProfessionByName(professionName, function(err, profession){
         if(err){
             throw err;

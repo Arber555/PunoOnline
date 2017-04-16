@@ -18,7 +18,7 @@ router.post('/create', function(req, res, next){
         else {
             res.json({success: true, msg: 'Profession create'});
         }
-    })
+    });
 });
 
 module.exports = router;
