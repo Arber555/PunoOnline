@@ -7,6 +7,36 @@ const config = require('../config/database');
 const Profile = require('../models/profile');
 const Profession = require('../models/profession');
 const Portfolio = require('../models/portfolio');
+//Middleware per file/foto
+//const multer = require('multer');
+//var upload = multer({dest: '../public/profilePhotos/'});
+const fs = require('fs');
+const randomString = require('randomstring');
+
+//rendom String base64
+function base64Random(fileName)
+{
+    //return Buffer.from(fileName, 'base64');
+    new Buffer(fileName, 'base64').toString("utf8");
+}
+
+// me encodu file/foto ne base64
+function base64_encode(file) {
+    // i lexon te dhenat ne menyr binare
+    var bitmap = fs.readFileSync(file);
+    // i converton te dhenat binare ne base64 encoded string
+    return new Buffer(bitmap).toString('base64');
+}
+
+
+// me decodu base64 ne file
+function base64_decode(base64str, file) {
+    // krijon ni buffer object me base64
+    var bitmap = new Buffer(base64str, 'base64');
+    // e shkrun bufferin ne file
+    fs.writeFileSync('./public/profilePhotos/'+file+".jpg", bitmap);
+}
+
 
 //create Profile
 router.post('/create',  passport.authenticate('jwt', {session: false}), function(req, res, next){
@@ -15,7 +45,7 @@ router.post('/create',  passport.authenticate('jwt', {session: false}), function
 
     Profile.getProfileByUserId(userID, function(err, userID){
         if(err){throw err;}
-        console.log(userID);
+        //console.log(userID);
         if(userID)
         {
             return res.json({success: false, msg: 'Ju keni profile'});
@@ -28,17 +58,61 @@ router.post('/create',  passport.authenticate('jwt', {session: false}), function
             {
                 return res.json({success: false, msg: 'Zgjidh profesionin'});
             }
+            //console.log(req.body.foto_name);
+            //const file = req.body.foto_name;
+            // base64_decode(file.file, 'copy.jpg');
+           
+            //console.log(randomFileName); //jepja qet emer random te filename (name) edhe ruje
 
-            let newProfile = new Profile({
-                profesioni: profession.id,
-                telefoni: req.body.telefoni,
-                foto_name: req.body.foto_name,
-                ora: req.body.ora,
-                edukimi: req.body.edukimi,
-                mesatarja_vlersimit: req.body.mesatarja_vlersimit,
-                pershkrimi: req.body.pershkrimi,
-                userID: req.body.userID
-            });
+           // return;  //qetu e kom lon vazhdo neser me rujt pathin mongodb edhe mi testu tonat menyrat 
+           var newProfile;
+
+            //foto
+            if(req.body.foto_name)
+            {
+                const file = req.body.foto_name;
+                
+                const randomFileName = randomString.generate({
+                    length: 20,
+                    charset: 'alphabetic'
+                });
+
+                //e run foton ne follderin profilePhotos
+                base64_decode(file.file, randomFileName);
+
+                const fotoPath = "./public/profilePhotos/"+randomFileName+".jpg";
+
+                newProfile = new Profile({
+                    profesioni: profession.id,
+                    telefoni: req.body.telefoni,
+                    foto_name: fotoPath,
+                    ora: req.body.ora,
+                    edukimi: req.body.edukimi,
+                    mesatarja_vlersimit: req.body.mesatarja_vlersimit,
+                    pershkrimi: req.body.pershkrimi,
+                    shteti: req.body.shteti,
+                    qyteti: req.body.qyteti,
+                    adresa: req.body.adresa,
+                    userID: req.body.userID
+                });
+            }
+            else {
+                newProfile = new Profile({
+                    profesioni: profession.id,
+                    telefoni: req.body.telefoni,
+                    foto_name: "./public/profilePhotos/default.jpg",
+                    ora: req.body.ora,
+                    edukimi: req.body.edukimi,
+                    mesatarja_vlersimit: req.body.mesatarja_vlersimit,
+                    pershkrimi: req.body.pershkrimi,
+                    shteti: req.body.shteti,
+                    qyteti: req.body.qyteti,
+                    adresa: req.body.adresa,
+                    userID: req.body.userID
+                });
+            }
+
+            
 
             Profile.addProfile(newProfile, function(err, profile){
                 if(err){
