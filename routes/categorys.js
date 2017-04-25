@@ -24,4 +24,10 @@ router.post('/create', function(req, res, next){
     });
 });
 
+router.get('/getCategory/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){
+    Category.getCategoryById(req.params.id, function(err, category){
+        res.json(category);
+    });
+});
+
 module.exports = router;

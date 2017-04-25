@@ -23,3 +23,7 @@ module.exports.addCategory = function(newCategory, callback){
 module.exports.getCateguryByName = function(name, callback){
     Category.findOne({name: name}, callback);
 }
+
+module.exports.getCategoryById = function(categoryID, callback){
+    Category.findById(categoryID, callback);
+}

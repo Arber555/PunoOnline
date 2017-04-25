@@ -16,7 +16,8 @@ router.post('/register', function(req, res, next){
         freelancer: req.body.freelancer,
         klient: req.body.klient,
         gjinia: req.body.gjinia,
-        datalindjes: req.body.datalindjes 
+        datalindjes: req.body.datalindjes,
+        statusi: req.body.statusi
     });
 
     User.addUser(newUser, function(err, user){

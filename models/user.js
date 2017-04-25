@@ -30,7 +30,7 @@ const UserSchema = mongoose.Schema({
     klient: {
         type: Boolean
     },
-    //statuesi \0/
+    //statusi \0/
     gjinia: {
         type: String,
         required: true
@@ -39,7 +39,7 @@ const UserSchema = mongoose.Schema({
         type: Date,
         required: true
     },
-    statuesi: {
+    statusi: {
         type: Boolean,
         required: true
     }
