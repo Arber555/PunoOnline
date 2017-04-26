@@ -12,7 +12,11 @@ const ProfileSchema = mongoose.Schema({
     telefoni: {
         type: String, 
     }, 
-    foto_name : String,
+    foto_name : {
+        type: String,
+        required: false,
+        default: "default"
+    },
     ora :{
         type: Number,
         required: true,
@@ -26,6 +30,19 @@ const ProfileSchema = mongoose.Schema({
     },
     pershkrimi: {
         type: String, 
+        required: true
+    },
+
+    shteti: {
+        type: String,
+        required: true
+    },
+    qyteti: {
+        type: String,
+        required: true
+    },
+    adresa: {
+        type: String,
         required: true
     },
     userID:{
