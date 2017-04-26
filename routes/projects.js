@@ -48,19 +48,27 @@ router.post('/create',  passport.authenticate('jwt', {session: false}), function
 
 // Get project me id
 router.get('/getProject/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){
-    Project.getProjectById(req.params.id, function(err, project){
+    Project.getProjectById(req.params.id, function(err, project)
+    {
+        if(err) throw err;
+
+        if(!project)
+        {
+            return res.json({success: false, msg: 'Ky projekt nuk ekziston.'});
+        }
+        res.json(project);
+    });
+});
+
+// kthej krejt projektet e ni useri
+router.get('/getProjectByUser/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){
+    Project.getProjectByUserId(req.params.id, function(err, project)
+    {
         res.json(project);
     });
 });
 
 // Get project me name
-router.get('/getProject/:name', passport.authenticate('jwt', {session: false}), function(req, res, next){
-    Project.getProjectById(req.params.id, function(err, project){
-        res.json(project);
-    });
-});
-
-// kthej krejt projektet e userit
 router.get('/getProjectByName/:emri_projektit', passport.authenticate('jwt', {session: false}), function(req, res, next){
     Project.getProjectByName(req.params.emri_projektit, function(err, project){
         res.json(project);
