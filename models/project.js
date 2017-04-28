@@ -77,7 +77,7 @@ const ProjectSchema = mongoose.Schema({
 const Project = module.exports = mongoose.model('Project', ProjectSchema);
 
 module.exports.getProjectByUserId = function(userID, callback){
-    Project.find({userID: mongoose.Types.ObjectId(userID)},callback);
+    Project.find({userID: mongoose.Types.ObjectId(userID)}, callback);
 }
 
 module.exports.getProjectByCategory = function(kategoria, callback){

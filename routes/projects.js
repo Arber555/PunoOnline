@@ -64,7 +64,12 @@ router.get('/getProject/:id', passport.authenticate('jwt', {session: false}), fu
 router.get('/getProjectByUser/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){
     Project.getProjectByUserId(req.params.id, function(err, project)
     {
-        res.json(project);
+        if(err) throw err;
+        else
+        {
+            res.json(project);
+        }
+        
     });
 });
 
