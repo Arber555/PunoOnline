@@ -203,7 +203,7 @@ route.get(':id', passport.authenticate('jwt', {session: false}), function(req, r
     Profile.getProfileByUserId(req.params.id, function(err, profile){
         if(err){
             res.json(err);
-            res.jesn({success: false, msg:'There is no profile profile!'});
+            res.jesn({success: false, msg:'There is no profile!'});
         }
         else
         {
