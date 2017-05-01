@@ -27,6 +27,7 @@ const professions = require('./routes/professions');
 const categorys = require('./routes/categorys');
 const portfolios = require('./routes/portfolios');
 const projects = require('./routes/projects');
+const vlersimet = require('./routes/vlersimet');
 
 //Port Number
 const port = 3000;
@@ -52,6 +53,7 @@ app.use('/professions', professions);
 app.use('/categorys', categorys);
 app.use('/portfolios', portfolios);
 app.use('/projects', projects);
+app.use('/vlersimet', vlersimet);
 
 app.get('/', function(req, res){
   res.send("testtt");
