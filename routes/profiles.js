@@ -198,7 +198,7 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), function(req,
 });
 
 
-route.get('/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){
+router.get('/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){
 
     Profile.getProfileByUserId(req.params.id, function(err, profile){
         if(err){
