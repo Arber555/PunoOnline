@@ -198,7 +198,7 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), function(req,
 });
 
 
-route.get(':id', passport.authenticate('jwt', {session: false}), function(req, res, next){
+route.get('/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){
 
     Profile.getProfileByUserId(req.params.id, function(err, profile){
         if(err){
@@ -208,6 +208,7 @@ route.get(':id', passport.authenticate('jwt', {session: false}), function(req, r
         else
         {
             res.json({success: true, msg:'Profile exists'});
+            res.json(profile);
         }
     });
 });
