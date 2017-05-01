@@ -6,7 +6,7 @@ const config = require('../config/database');
 const Category = require('../models/category');
 
 
-//create Category test so qe e perdorim dika qet route po mu ka duft me shtu kategori
+//create Category test so qe e perdorim dika qet route po mu ka duft me shtu kategori(testuese)
 router.post('/create', function(req, res, next){
     let newCategory = new Category({
         name: req.body.name,

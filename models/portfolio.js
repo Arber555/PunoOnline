@@ -51,9 +51,13 @@ module.exports.getPortfolioByName = function(portfolioName, callback){
 }
 
 module.exports.updatePortfolio = function(id, updatePortfolio, callback){
-    Profile.update({_id: mongoose.Types.ObjectId(id)}, updatePortfolio, callback);
+    Portfolio.update({_id: mongoose.Types.ObjectId(id)}, updatePortfolio, callback);
 }
 
 module.exports.getPortfolioByProfileID = function(profileID, callback){
-    Profile.finde({profileID: profileID}, callback);
+    Portfolio.finde({profileID: profileID}, callback);
+}
+
+module.exports.removePortfolio = function(id, callback){
+    Portfolio.remove({_id: mongoose.Types.ObjectId(id)}, callback);
 }

@@ -20,14 +20,22 @@ router.post('/register', function(req, res, next){
         statusi: req.body.statusi
     });
 
-    User.addUser(newUser, function(err, user){
-        if(err){
-            res.json({success: false, msg:'Failed to register user!'});
+     Profile.getUserByUsername(req.body.username, function(err, user){
+        if(err){throw err;}
+        //console.log(userID);
+        if(user)
+        {
+            return res.json({success: false, msg: 'Ju keni profile'});
         }
-        else {
-            res.json({success:true, msg: 'User registered'});
-        }
-    });
+        User.addUser(newUser, function(err, user){
+            if(err){
+                res.json({success: false, msg:'Failed to register user!'});
+            }
+            else {
+                res.json({success:true, msg: 'User registered'});
+            }
+        });
+     });
 });
 
 //Authenticate
@@ -69,7 +77,7 @@ router.post('/authenticate', function(req, res, next){
     });
 });
 
-//Profile
+//Profile test osht
 router.get('/profile', passport.authenticate('jwt', {session: false}), function(req, res, next){
     res.json({user: req.user});
 });

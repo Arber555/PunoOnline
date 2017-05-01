@@ -35,16 +35,13 @@ router.post('/create', function(req, res, next){
 
 
 //get Portfolio by profile id
-
 router.get('/:id', function(req, res, next){
     Portfolio.getPortfolioByProfileID(req.params.id, function(err, portfolios){
-        if(err)
-        {
+        if(err){
             throw err;
         }
 
-        if(!portfolios)
-        {
+        if(!portfolios){
             return res.json({success: false, msg: 'Nuk ka asnj portfolio'});
         }
 

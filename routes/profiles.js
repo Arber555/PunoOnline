@@ -58,15 +58,8 @@ router.post('/create',  passport.authenticate('jwt', {session: false}), function
             {
                 return res.json({success: false, msg: 'Zgjidh profesionin'});
             }
-            //console.log(req.body.foto_name);
-            //const file = req.body.foto_name;
-            // base64_decode(file.file, 'copy.jpg');
-           
-            //console.log(randomFileName); //jepja qet emer random te filename (name) edhe ruje
 
-           // return;  //qetu e kom lon vazhdo neser me rujt pathin mongodb edhe mi testu tonat menyrat 
            var newProfile;
-
             //foto
             if(req.body.foto_name)
             {
@@ -112,8 +105,6 @@ router.post('/create',  passport.authenticate('jwt', {session: false}), function
                 });
             }
 
-            
-
             Profile.addProfile(newProfile, function(err, profile){
                 if(err){
                     res.json({success: false, msg:'Failed to create profile!'});
@@ -129,12 +120,14 @@ router.post('/create',  passport.authenticate('jwt', {session: false}), function
 //get profile
 router.get('/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){
     Profile.getProfileById(req.params.id, function(err, profile){
+        if(err){ throw err; }
+        console.log(profile.telefoni);
         res.json(profile);
     });
 });
 
 //update profile
-router.put('/:id', function(req, res, next){  //duhet me kqyr per validim mi tregu gipes me bo front end
+router.put('/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){  //duhet me kqyr per validim mi tregu gipes me bo front end
     const profileID = req.params.id;
     const profile = req.body;
     const professionName = req.body.profesioni;
@@ -201,6 +194,21 @@ router.put('/:id', function(req, res, next){  //duhet me kqyr per validim mi tre
                 res.json({success: true, msg:'Profile update'});
             }
         });
+    });
+});
+
+
+route.get(':id', passport.authenticate('jwt', {session: false}), function(req, res, next){
+
+    Profile.getProfileByUserId(req.params.id, function(err, profile){
+        if(err){
+            res.json(err);
+            res.jesn({success: false, msg:'There is no profile profile!'});
+        }
+        else
+        {
+            res.json({success: true, msg:'Profile exists'});
+        }
     });
 });
 

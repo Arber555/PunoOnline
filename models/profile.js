@@ -73,3 +73,7 @@ module.exports.getProfileById = function(profileID, callback){
 module.exports.updateProfile = function(id, updateProfile, callback){
     Profile.update({_id: mongoose.Types.ObjectId(id)}, updateProfile, callback);
 }
+
+module.exports.removeProfile = function(id, callback){
+    Profile.remove({_id: mongoose.Types.ObjectId(id)}, callback);
+}

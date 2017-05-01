@@ -72,3 +72,7 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
     callback(null, isMatch);
   });
 }
+
+module.exports.removeUser = function(id, callback){
+    User.remove({_id: mongoose.Types.ObjectId(id)}, callback);
+}

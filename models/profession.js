@@ -18,3 +18,11 @@ module.exports.getProfessionByName = function(name, callbeck){
 module.exports.addProfession = function(newProfession, callbeck){
     newProfession.save(callbeck);
 }
+
+module.exports.removeProfession = function(id, callback){
+    Profession.remove({_id: mongoose.Types.ObjectId(id)}, callback);
+}
+
+module.exports.updateProfession = function(id, updateProfession, callback){
+    Profession.update({_id: mongoose.Types.ObjectId(id)}, updateProfession, callback);
+}
