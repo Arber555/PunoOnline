@@ -28,6 +28,8 @@ const categorys = require('./routes/categorys');
 const portfolios = require('./routes/portfolios');
 const projects = require('./routes/projects');
 const vlersimet = require('./routes/vlersimet');
+const ofertat = require('./routes/ofertat');
+const kontratatvirtuale = require('./routes/kontratatvirtuale');
 
 //Port Number
 const port = 3000;
@@ -54,6 +56,8 @@ app.use('/categorys', categorys);
 app.use('/portfolios', portfolios);
 app.use('/projects', projects);
 app.use('/vlersimet', vlersimet);
+app.use('/ofertat', ofertat);
+app.use('/kontratatvirtuale', kontratatvirtuale);
 
 app.get('/', function(req, res){
   res.send("testtt");
