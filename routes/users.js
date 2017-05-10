@@ -88,4 +88,25 @@ router.get('/:id', function(req, res, next){
     })
 });
 
+
+router.put("/updateUser/:id", function(req, res, next){
+    User.getUserById(req.params.id, function(err, user){
+        if(err){ throw err; }
+
+        if(!user){
+            return res.json({success: false, msg: 'Wrong user'});
+        }
+
+        User.updateUser(req.params.id, req.body, function(err, updateUser){
+            if(err){ throw err; }
+
+            if(!updateUser){
+                 return res.json({success: false, msg: 'ERROR updateUser'});
+            }
+
+            res.json({success: true, msg: 'User update'});
+        });
+    });
+});
+
 module.exports = router;

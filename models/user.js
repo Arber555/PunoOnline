@@ -76,3 +76,7 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 module.exports.removeUser = function(id, callback){
     User.remove({_id: mongoose.Types.ObjectId(id)}, callback);
 }
+
+module.exports.updateUser = function(id, updateUser, callback){
+    User.update({_id: mongoose.Types.ObjectId(id)}, updateUser, callback);
+}
