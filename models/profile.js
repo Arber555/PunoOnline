@@ -62,6 +62,10 @@ module.exports.getProfileByUserId = function(userId, callback){
     Profile.findOne({userID: mongoose.Types.ObjectId(userId)},callback);
 }
 
+/*module.exports.getProfileByUsername = function(username, callback){
+    Profile.findOne({UserName})
+}*/
+
 module.exports.addProfile = function(newProfile, callback){
     newProfile.save(callback);
 }

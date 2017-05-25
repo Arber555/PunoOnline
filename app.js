@@ -30,6 +30,7 @@ const projects = require('./routes/projects');
 const vlersimet = require('./routes/vlersimet');
 const ofertat = require('./routes/ofertat');
 const kontratatvirtuale = require('./routes/kontratatvirtuale');
+const test = require('./routes/test');
 
 //Port Number
 const port = 3000;
@@ -59,9 +60,10 @@ app.use('/projects', projects);
 app.use('/vlersimet', vlersimet);
 app.use('/ofertat', ofertat);
 app.use('/kontratatvirtuale', kontratatvirtuale);
+app.use('/test', test);
 
 app.get('/', function(req, res){
-  res.send("testtt");
+  res.send("aaaa");
 })
 
 //start server

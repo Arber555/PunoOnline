@@ -15,7 +15,8 @@
     "mongoose": "*",
     "multer": "^1.3.0",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "nodemailer": "~0.7.1"
   },
   "author": "Arber Mulla",
   "license": "ISC"
