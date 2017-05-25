@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Edit Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/edit-profile.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+
+    
+    <script type="text/javascript">
+        if(!window.localStorage.getItem('id_token')) {
+            window.location.replace('login.html');
+        }
+    </script>
+</head>
+
+<body>
+    <div id="layout">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Freelancing</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav navbar-left">
+           <li ><a id="punet" href="job-feed.html">PUNET</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
+          <li class="dropdown">
+            <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="freelancer-profile.html">PROFILI IM</a></li>
+              <li><a href="edit-profile.html">EDITO PROFILIN</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a id="logout" href="login.html">QKYQY</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+
+    <div class="container" style="padding-top: 10px;">
+      
+  <div class="row well well-sm">
+  <h1 class="page-header" align="center">Edito Profilin</h1>
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 70px">
+      <div class="text-center">
+        <img src="img/profile.jpg" alt="avatar"  height="140px" style="border-radius: 50%">
+        <h6>Upload nje foto tjeter...</h6>
+        <input type="file" class="text-center center-block well well-sm">
+      </div>
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      <!--<div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        This is an <strong>.alert</strong>. Use this to show important messages to the user.
+      </div>-->
+      <h3 id="aaa">Informatat Personale</h3>
+      <form class="form-horizontal" role="form" id="changeUserData" method="post" action="#">
+        <div class="form-group">
+          <label class="col-lg-3 control-label" for="emri">Emri:</label>
+          <div class="col-lg-8">
+            <input class="form-control" id="emri" onkeydown="return alphaOnly(event);" minlength="3" maxlength="20" type="text" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="mbiemri" class="col-lg-3 control-label">Mbiemri:</label>
+          <div class="col-lg-8">
+            <input class="form-control" id="mbiemri" onkeydown="return alphaOnly(event);" type="text" minlength="3" maxlength="20" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username" class="col-lg-3 control-label">Username:</label>
+          <div class="col-lg-8">
+            <input class="form-control" id="username" minlength="5" maxlength="20" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="emaili" class="col-lg-3 control-label" for="emaili">Email:</label>
+          <div class="col-lg-8">
+            <input class="form-control" name="emaili"  id="emaili" type="email">
+          </div>
+        </div>
+        
+
+        
+        <div class="form-group">
+            <label for="ora" class="col-lg-3 control-label">Pagesa € /orë</label>
+            <div class="col-lg-8">
+              <input  name="ora" id="ora"  type="text" class="form-control"  /> 
+            </div>
+        </div>
+      
+       
+      <!--  <div class="form-group">
+            <label class="col-lg-3 control-label" for="profesioni" >
+                Ju jeni</label>
+              <div class="col-lg-8">
+                <select name="profesioni" id="profesioni" class="form-control">
+                    <option value="">-- Zgjidh nje profesion --</option>
+                    <hr style="border: 1px solid red">
+                    <option value="Web, Mobile & Software Dev">Web, Mobile & Software Dev</option>
+                    <option value="IT & Networking">IT & Networking</option>
+                    <option value="Design & Creative">Design & Creative</option>
+                    <option value="Accounting & Consulting">Accounting & Consulting</option>
+                </select>
+            </div>
+        </div>-->
+
+
+          <div class="form-group">
+              <label class="col-lg-3 control-label" for="edukimi">Universiteti/Edukimi</label>
+               <div class="col-lg-8">
+                <input name="edukimi" id="edukimi" type="text" class="form-control"   />
+              </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-lg-3 control-label" for="telefoni" >Numri telefonit</label>
+            <div class="col-lg-8">
+              <input name="telefoni" id="telefoni" type="text" class="form-control" placeholder="049-700-700"/>
+            </div>
+          </div>
+          
+        
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label" for="profesioni">
+                    Profesioni</label>
+                <div class="col-lg-8">
+                  <input name="profesioni" id="profesioni" disabled="disabled" type="text" class="form-control"/>
+                </div>
+            </div>
+              
+        
+        
+        <div class="form-group">
+            <label class="col-lg-3 control-label" for="pershkrimi">Pershkrim juaj</label>
+            <div class="col-lg-8">
+              <textarea  name="pershkrimi" id="pershkrimi" placeholder="Une jam..." class="form-control" cols="71" rows="10" ></textarea>
+            </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-3 control-label"></label>
+          <div class="col-lg-8">
+            <input class="btn btn-custom" value="Ruaj Ndryshimet" type="submit">
+            <span></span>
+            <input class="btn btn-default" value="Cancel" type="reset">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+    
+<footer id="footer" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p><br>© 2017</p>
+                    <p>Powered by <strong><a href="#" target="_blank">Freelancing</a></strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+    
+
+    <script type="text/javascript">
+      $('#logout').click( function() {
+            window.localStorage.clear();
+        });
+    </script>
+
+
+
+
+    <script type="text/javascript">
+        $(function(){
+           
+            $.ajax({
+                    type: 'GET',
+                    url:'http://localhost:3000/profiles/userProfile/' + localStorage.getItem('user_id'),
+                    contentType: 'application/json',
+                    dataType: 'JSON',
+                    headers: {
+                        'Authorization': localStorage.getItem('id_token')
+                    }
+                 }).done(function( data ) {
+                    if(data.success) {
+                      //  window.location.replace('freelancer-profile.html');
+                        localStorage.setItem('profile', JSON.stringify(data.profile));
+                        localStorage.setItem('profile_id', JSON.stringify(data.profile._id));
+                        $("#edukimi").val(data.profile.edukimi);
+                        $("#pershkrimi").val(data.profile.pershkrimi);
+                        $("#ora").val(data.profile.ora);
+                        $("#telefoni").val(data.profile.telefoni);
+                        $("#profesioni").val(data.profesioni);
+
+                    } else {
+                        alert('Error: ' + data.msg);
+                    }
+                });
+            });
+
+        $(function(){
+           
+            $.ajax({
+                    type: 'GET',
+                    url:'http://localhost:3000/users/'+ localStorage.getItem('user_id'),
+                    contentType: 'application/json',
+                    dataType: 'JSON',
+                    headers: {
+                        'Authorization': localStorage.getItem('id_token')
+                    }
+                 }).done(function( data ) {
+                    if(data) {
+                      //  window.location.replace('freelancer-profile.html');
+                      $("#emriprofil").text(data.emri);
+
+                      $("#emri").val(data.emri);
+                      $("#mbiemri").val(data.mbiemri);
+                      $("#username").val(data.username);
+                      $("#emaili").val(data.email);
+
+
+                    } else {
+                        alert('Error: ' + data.msg);
+                    }
+                });
+            });
+
+
+
+  
+        
+    </script>
+
+    <script type="text/javascript">
+        //Update User
+       $(function(){
+            $("#changeUserData").on("submit", function(event) {
+
+                event.preventDefault();
+
+                var changeData = {
+                    'emri': $("#emri").val(),
+                    'mbiemri': $("#mbiemri").val(),
+                    'username': $("#username").val(),
+                    'email': $("#emaili").val(), //for get email 
+                };
+                
+
+
+
+                  $.ajax({
+                    type: 'PUT',
+                    url:'http://localhost:3000/users/updateUser/' + localStorage.getItem('user_id'),
+                    data: JSON.stringify(changeData),
+                    contentType: 'application/json',
+                    dataType: 'JSON'
+                  }).done(function( response ) {
+                    if(response.success) {
+                        window.location.replace('freelancer-profile.html')
+                    } else {
+                        alert('Error: ' + response.msg);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+      // Update Profile
+      /* $(function(){
+            $("#changeUserData").on("submit", function(event) {
+
+                event.preventDefault();
+
+                var changeData = {
+                    'edukimi': $("#edukimi").val(),
+                    'pershkrimi': $("#pershkrimi").val(),
+                    'ora': $("#ora").val(),
+                    'telefoni': $("#telefoni").val(), 
+                    'profesioni': $("#profesioni").val()
+                };
+                
+                console.log($("#profesioni").val())
+
+                $.ajax({
+                  type: 'PUT',
+                  url:'http://localhost:3000/profiles/' + localStorage.getItem('profile_id'),
+                  data: JSON.stringify(changeData),
+                  contentType: 'application/json',
+                  dataType: 'JSON',
+                  headers: {
+                        'Authorization': localStorage.getItem('id_token')
+                    }
+                }).done(function( response ) {
+                  if(response.success) {
+                    window.location.replace('freelancer-profile.html')
+                  } else {
+                    alert('Error: ' + response.msg);
+                  }
+                });
+            });
+        });*/
+    </script>
+
+    <script type="text/javascript">
+       function alphaOnly(event) {
+          var key = event.keyCode;
+          return ((key >= 65 && key <= 90) || key == 8);
+        };
+    </script>
+</body>
+
+</html>

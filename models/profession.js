@@ -14,6 +14,9 @@ const Profession = module.exports = mongoose.model('Profession', ProfessionSchem
 module.exports.getProfessionByName = function(name, callbeck){
     Profession.findOne({name: name}, callbeck);
 }
+module.exports.getProfessionById = function(id, callback){
+    Profession.findById(id, callback);
+}
 
 module.exports.addProfession = function(newProfession, callbeck){
     newProfession.save(callbeck);

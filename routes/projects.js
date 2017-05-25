@@ -87,6 +87,19 @@ router.get('/GetProjectByCategory/:id', passport.authenticate('jwt', {session: f
     });
 });
 
+// get all projects
+router.get('/getAllProjects', function(req, res, next){
+    Project.getAllProjects({}, function(err, projects){
+        if(err){ throw err; }
+
+        if(!projects){
+            return res.json({success : false, msg: 'No Projects'});
+        }
+
+        res.json(projects);
+    });
+});
+
 //Modifiko Pojektin
 router.put('/updateProject/:id', passport.authenticate('jwt', {session: false}), function(req, res, next)
 {

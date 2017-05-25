@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Signup</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet">
+
+    <script src="vendor/jquery/jquery.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/creative.min.js"></script>
+
+    <link href="css/signup.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        if(window.localStorage.getItem('id_token')) {
+            window.location.replace('freelancer-profile.html');
+        }
+    </script>
+    
+
+	</head>
+
+	<body>
+
+		<div id="layout">  
+			<nav class="navbar navbar-default ">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">Freelancing</a>
+				</div>
+			</nav>
+
+		<section id="signup">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-wrap">
+						
+						<h1>Regjistrohu dhe gjej apo posto pune!</h1>
+							<form class="form-horizontal" role="form" id="addUser" method="post" action="#">
+								<div class="form-group">
+									<label for="emri" class="col-lg-3 control-label">Emri</label>
+									<div class="col-lg-8">
+									<input type="text" class="form-control" name="emri" id="emri" onkeydown="return alphaOnly(event)" autocomplete="off"/>
+									</div>
+								</div>  
+
+								<div class="form-group">
+									<label for="mbiemri" class="col-lg-3 control-label">Mbiemri</label>
+									<div class="col-lg-8">
+										<input type="text" class="form-control" name="mbiemri" id="mbiemri" onkeydown="return alphaOnly(event)"  autocomplete="off"/>
+									</div>
+								</div>                        
+
+								<div class="form-group">
+									<label for="email" class="col-lg-3 control-label">Email</label>
+									<div class="col-lg-8">
+										<input type="text" class="form-control"  name="email" id="email"   autocomplete="off"/>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="username" class="col-lg-3 control-label">Username</label>
+									<div class="col-lg-8">
+										<input type="text" class="form-control" name="username" id="username"  autocomplete="off" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="password" class="col-lg-3 control-label">Fjalëkalimi</label>
+									<div class="col-lg-8">
+										<input type="password" class="form-control" name="password" id="password" />
+									</div>
+								</div>
+
+							 	<div class="form-group">
+									<label for="confirm" class="col-lg-3 control-label">Konfirmo fjalëkalimin</label>
+									<div class="col-lg-8">
+										<input type="password" class="form-control" name="confirm" id="confirm"  />
+									</div>	
+								</div>
+
+								<div class="form-group">
+									<label for="password" class="col-lg-3 control-label">Datalindjes</label>
+									<div class="col-lg-8">
+										<input type="date"  min="1920-01-01" max="2018-01-01" class="form-control" name="datalindjes" id="datalindjes" required>
+									</div>	
+								</div>
+
+								<div class="form-group">
+								  <label class="control-label col-lg-3" style="margin-bottom: 5px">Gjinia:</label>
+									<div class="col-lg-8">
+									  <label class="col-lg-3 control-label">
+									  <input  name="gjinia" type="radio" value="Mashkull" required>
+									  Mashkull </label>
+									  <label class="col-lg-3 control-label">
+									  <input name="gjinia" type="radio" value="Femer" required>
+									  Femer </label>
+								  </div>
+							  </div>
+							
+							  <div class="form-group">
+								<label class="control-label col-lg-3" style="margin-bottom: 5px">Ju jeni:</label>
+								  <div class="col-lg-8">
+									  <label class="col-lg-3 control-label">
+									<input  name="llojiKonsumatorit" type="radio" value="Klient" required>
+									Klient </label>
+									
+									<label class="col-lg-3 control-label">
+									<input   name="llojiKonsumatorit"  type="radio" value="Freelancer" required>
+									Freelancer </label>   
+								</div>
+							</div>
+
+								<input type="submit" id="btn-signup" class="btn btn-custom btn-lg btn-block" value="Regjistrohu"> 
+							</form>
+							<p id="signup-p" align="center"> 
+                                <span>Keni llogari?</span>
+                                <a href="login.html">Kyqu</a>
+                            </p>
+						</div>
+					</div> <!-- /.col-xs-12 -->
+				</div> <!-- /.row -->
+			</div> <!-- /.container -->
+		</section>
+		<div id="push"></div>
+	</div>
+
+
+	<footer id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<p><br>© 2017</p>
+					<p>Powered by <strong><a href="#" target="_blank">Freelancing</a></strong></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+    <!-- jQuery -->
+
+    
+    <!--<script type="text/javascript">
+    	$(document).ready(function(){
+    		$("#emri").on('keypress', function(){
+    			if(/^[a-zA-Z]+$/.test($(this).val()) && $(this).val().trim()!=="" && $(this).val().length >= 2 && $(this).val().length<10 ){
+    				$(this).css({'border-color' : '#37ff00', 'border-width': '2px'});
+    			} else {
+    				$(this).css({'border-color' : 'red', 'border-width': '2px'});
+    			}
+    		})
+
+    		$("#mbiemri").on('keypress',function(){
+    			if(/^[a-zA-Z]+$/.test($(this).val()) && $(this).val().trim()!==" "){
+    				$(this).css({'border-color' : '#37ff00', 'border-width': '2px'});
+    			} else {
+    				$(this).css({'border-color' : 'red', 'border-width': '2px'});
+    			}
+    		})
+
+    		$("#email").keyup(function(){
+    			if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($(this).val()) && $(this).val().trim()!=="") {
+    				$(this).css({'border-color' : '#37ff00', 'border-width': '2px'});
+    			} else {
+    				$(this).css({'border-color' : 'red', 'border-width': '2px'});
+    			}
+    		})
+    		//me kqyr apet qet validim tpasswordit se spo len specail karaktere
+    		$("#password").keyup(function(){
+    			if(/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/.test($(this).val()) && $(this).val().trim()!==""){
+    				$(this).css({'border-color' : '#37ff00', 'border-width': '2px'});
+    			} else {
+    				$(this).css({'border-color' : 'red', 'border-width': '2px'});
+    			}
+    		})
+    	})
+		
+
+		// nelt me qit te emri e mbiemri
+		onkeydown="return alphaOnly(event)" 
+
+		function alphaOnly(event) {
+		  var key = event.keyCode;
+		  return ((key >= 65 && key <= 104) || key == 8 || key == 9);
+		};
+    </script>-->
+
+    <script type="text/javascript">
+        $(function(){
+
+        	$.validator.addMethod("passwordRegex", function(value, element) {
+                        return this.optional(element) || /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/i.test(value);
+                    }, "Shembull si duhet te jete nje password: Password123.");
+
+                    $.validator.addMethod("noSpace", function(value, element) { 
+                      return value.indexOf(" ") < 0 && value != ""; 
+                    }, "Nuk lejohen hapesirat!");
+
+                    $("#addUser").validate({
+                        rules: {
+                            emri: {
+                                required: true,
+                                minlength: 3,
+                                maxlength: 20,
+                                noSpace: "Required"
+                            },
+                            mbiemri: {
+                                required: true,
+                                minlength: 3,
+                                maxlength: 20,
+                                number: false,
+                                noSpace: true
+                            },
+                            email: {
+                                required: true,
+                                email: true,
+                                noSpace: true
+                            },
+                            username: {
+                                required: true,
+                                minlength: 5,
+                                maxlength: 15,
+                                noSpace: true
+                            },
+                            password: {
+                                required: true,
+                                passwordRegex: "Required"
+                            },
+                            confirm: {
+                            	equalTo: "#password"
+                            }
+                        }, 
+                    messages: {
+                            emri: {
+                                required: "* Ju lutem shkruani emrin tuaj!",
+                                minlength: $.validator.format("* Shtypni minimum {0} karaktere!"),
+                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!"),
+                                number: "* Nuk lejohet te shtypen numra"
+                            },
+                            mbiemri: {
+                               required: "* Ju lutem shkruani mbiemrin tuaj!",
+                                minlength: $.validator.format("* Shtypni minimum {0} karaktere!"),
+                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!"),
+                                number: "* Nuk lejohet te shtypen numra"
+                            },
+                            email: {
+                                required: "* Ju lutem shkruani email addresen tuaj!",
+                                email: "Shembull emaili: test@test.com"
+                                
+                            },
+                            username: {
+                                required: "* Ju lutem shkruani username-in tuaj!",
+                                minlength: $.validator.format("* Shtypni minimum {0} karaktere!"),
+                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!")
+                            },
+                            password: {
+                                required: "* Ju lutem shkruani nje password!"
+                            },
+                            confirm: {
+                            	equalTo: "Fjalkalimi duhet te jete i njejt!"
+                            }
+                        },
+                        
+                    });
+
+            $("#addUser").on("submit", function(event) {
+            		
+
+                
+                event.preventDefault();
+
+                var freelancer = false;
+                var klient = false;
+                var llojiKonsumatorit = $('input[name=llojiKonsumatorit]:checked').val();
+                if(llojiKonsumatorit == 'Freelancer') {
+                    freelancer = true;
+                } else {
+                    klient = true;
+                }
+
+                var newUser = {
+                    'emri': $("input[name='emri']").val(),
+                    'mbiemri': $("input[name='mbiemri']").val(),
+                    'username': $("input[name='username']").val(),
+                    'password': $("input[name='password']").val(),
+                    'email': $("input[name='email']").val(), //for get email 
+                    'freelancer': freelancer,
+                    'klient': klient,
+                    'gjinia': $("input[name='gjinia']:checked").val(),
+                    'datalindjes': $("input[name='datalindjes']").val(),
+                    //'statusi' : true
+                };
+                console.log(newUser);
+
+
+
+                  $.ajax({
+                    type: 'POST',
+					url:'http://localhost:3000/users/register',
+                    data: JSON.stringify(newUser),
+                    contentType: 'application/json',
+					dataType: 'JSON'
+				 }).done(function( response ) {
+                    if(response.success) {
+                        window.location.replace('login.html')
+                    } else {
+                        alert('Error: ' + response.msg);
+                    }
+                });
+			});
+		});
+    </script>
+
+    <script type="text/javascript">
+       function alphaOnly(event) {
+          var key = event.keyCode;
+          return ((key >= 65 && key <= 90) || key == 8 || key == 9 || key == 16);
+        };
+    </script>
+
+
+</body>
+
+</html>

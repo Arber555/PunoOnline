@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Freelancer Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/freelancer-profile.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+
+    
+    <script type="text/javascript">
+        if(!window.localStorage.getItem('id_token')) {
+            window.location.replace('login.html');
+
+        }
+    </script>
+
+   <!-- <script>
+      function makeEditable(div){
+          div.style.border = "1px solid #000";
+          div.style.padding = "20px";
+          div.contentEditable = true;
+      }
+      function makeReadOnly(div){
+          div.style.border = "none";
+          div.style.padding = "20px";
+          div.contentEditable = false;
+          //alert("Run Ajax POST request here to save the div.innerHTML \
+          //or div.textContent to the database.");
+      }
+    </script>-->
+
+
+</head>
+
+<body>
+    <div id="layout">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Freelancing</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav navbar-left">
+           <li ><a id="punet" href="job-feed.html">PUNET</a></li>
+        </ul> 
+
+        <ul class="nav navbar-nav navbar-right">
+          <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
+          <li  class="dropdown">
+            <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a  href="freelancer-profile.html">PROFILI IM</a></li>
+              <li><a  href="edit-profile.html">EDITO PROFILIN</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a id="logout" href="login.html">QKYQU</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+
+    <div class="container">
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-sm-4 col-md-4">
+                          <img src="img/profile.jpg" alt="" class="img-rounded img-responsive" />
+                      </div>
+                      <div class="col-sm-6 col-md-8">
+                          <h4 id="emri-freelancerit"><span style="color: gray; float: right;">$/ora</span><strong id="paret" style="float:right; margin-right: 5px"> </strong></h4> 
+                          <p id="profesioni"><strong ></strong> </p>
+                          <!--<small><cite title="shteti qyteti">{{profile.qyteti}}, </cite><strong> {{profile.shteti}}</strong> <i class="glyphicon glyphicon-map-marker">
+                          </i></small>-->
+                          <p >
+                              <i id="emaili" class="glyphicon glyphicon-envelope"></i>
+                              <!--<i class="glyphicon glyphicon-globe"></i><a href="#">www.jquery2dotnet.com</a>-->
+                              <br />
+                              <!--{{user.datalindjes | date: 'MM/dd/yyyy'}}-->
+                              <i id="datalindjes" class="glyphicon glyphicon-gift"></i>
+                          </p>
+                          <!-- Split button -->
+                          
+                      </div>
+                       <!-- {{profile.pershkrimi}}-->
+                      <div class="col-sm-6 col-md-8">
+                              
+                      </div> 
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+       <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-sm-12 col-md-12">
+                          <h3 style="margin-bottom: 30px">Pershkrimi</h3>
+                          <p id="pershkrimi"></p>    
+                      </div> 
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="well well-sm">
+                  <div class="row" onclick="makeEditable(this)" onblur="makeReadOnly(this)">
+                      <div class="col-sm-12 col-md-12" >
+                          <h3 style="margin-bottom: 30px">Edukimi</h3>
+                          <p id="edukimi"></p>    
+                      </div> 
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <!--<div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu slidedown">
+                            <li><a href="#"><span class="glyphicon glyphicon-refresh">
+                            </span>Refresh</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-ok-sign">
+                            </span>Available</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-remove">
+                            </span>Busy</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-time"></span>
+                                Away</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-off"></span>
+                                Sign Out</a></li>
+                        </ul>
+                    </div>-->
+                </div>
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="img/rtopalli.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Ragip Topalli</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="img/profile.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                    <strong class="pull-right primary-font">Arber Mulla</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="img/rtopalli.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Ragip Topalli</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="img/profile.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                    <strong class="pull-right primary-font">Arber Mulla</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                                Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p><br>© 2017</p>
+                    <p>Powered by <strong><a href="#" target="_blank">Freelancing</a></strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+    
+
+    
+
+
+
+
+    <script type="text/javascript">
+        $(function(){
+           
+            $.ajax({
+                    type: 'GET',
+                    url:'http://localhost:3000/profiles/userProfile/' + localStorage.getItem('user_id'),
+                    contentType: 'application/json',
+                    dataType: 'JSON',
+                    headers: {
+                        'Authorization': localStorage.getItem('id_token')
+                    }
+                 }).done(function( data ) {
+                    if(data.success) {
+                      //  window.location.replace('freelancer-profile.html');
+                      console.log(window.localStorage.getItem('id_token'));
+                        localStorage.setItem('profile', JSON.stringify(data.profile));
+                        $("#edukimi").html("<strong>" + data.profile.edukimi + "</strong>");
+                        $("#pershkrimi").text(data.profile.pershkrimi);
+                        $("#profesioni").text(data.profesioni);
+                        $("#paret").text(data.profile.ora);
+                    } else {
+                        alert('Error: ' + data.msg);
+                    }
+                });
+            });
+
+        $(function(){
+           
+            $.ajax({
+                    type: 'GET',
+                    url:'http://localhost:3000/users/'+ localStorage.getItem('user_id'),
+                    contentType: 'application/json',
+                    dataType: 'JSON',
+                    headers: {
+                        'Authorization': localStorage.getItem('id_token')
+                    }
+                 }).done(function( data ) {
+                    if(data) {
+                        var monthNames = ["January", "February", "March", "April", "May", "June",
+                          "July", "August", "September", "October", "November", "December"
+                        ];
+                        var date = new Date(data.datalindjes);
+                        $("#emri-freelancerit").html("<strong>" +data.emri +" "+ data.mbiemri +"</strong>");
+                        $("#datalindjes").html("<strong> " + (monthNames[date.getMonth()] ) + '/' + date.getDate() + '/' +  date.getFullYear() +"</strong>");
+                        $("#emaili").html("<strong> " + data.email + "</strong>");
+                        $("#emrimbiemri").html("<strong>" + data.emri + " " + data.mbiemri +"</strong>");
+                        $("#emriprofil").text(data.emri);
+
+                    } else {
+                        alert('Error: ' + data.msg);
+                    }
+                });
+            });
+  
+        $('#logout').click( function() {
+            window.localStorage.clear();
+        });
+    </script>
+</body>
+
+</html>

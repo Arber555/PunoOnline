@@ -198,18 +198,29 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), function(req,
 });
 
 
-router.get('/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){
+router.get('/userProfile/:id', function(req, res, next){
 
     Profile.getProfileByUserId(req.params.id, function(err, profile){
         if(err){
-            res.json(err);
-            res.jesn({success: false, msg:'There is no profile!'});
+            res.json(err);   
         }
-        else
-        {
-            res.json({success: true, msg:'Profile exists'});
-            res.json(profile);
+
+        if(!profile){
+            return res.json({success: false, msg:'There is no profile!'});
         }
+
+        Profession.getProfessionById(profile.profesioni, function(err, profession){
+            if(err){ throw err; }
+
+            if(!profession){
+                 res.json({success: false, msg:'There is no profile!'});
+            }
+            
+            const professionName = profession.name;
+            profile.professionName;
+            
+            res.json({success: true, msg:'Profile exists', profile, profesioni: professionName});
+        });
     });
 });
 

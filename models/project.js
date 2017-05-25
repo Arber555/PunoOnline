@@ -80,6 +80,10 @@ module.exports.getProjectByUserId = function(userID, callback){
     Project.find({userID: mongoose.Types.ObjectId(userID)}, callback);
 }
 
+module.exports.getAllProjects = function(all, callback){
+    Project.find(all, callback);// .sort({ key: 1 });
+}
+
 module.exports.getProjectByCategory = function(kategoria, callback){
     Project.find({kategoria: mongoose.Types.ObjectId(kategoria)},callback);
 }

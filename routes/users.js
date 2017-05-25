@@ -4,6 +4,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
+const Profile = require('../models/profile');
 
 //Register
 router.post('/register', function(req, res, next){
@@ -20,7 +21,7 @@ router.post('/register', function(req, res, next){
         statusi: req.body.statusi
     });
 
-     Profile.getUserByUsername(req.body.username, function(err, user){
+     User.getUserByUsername(req.body.username, function(err, user){
         if(err){throw err;}
         //console.log(userID);
         if(user)
@@ -29,7 +30,7 @@ router.post('/register', function(req, res, next){
         }
         User.addUser(newUser, function(err, user){
             if(err){
-                res.json({success: false, msg:'Failed to register user!'});
+                res.json({success: false, msg:'Ka ndodhur nje gabim!!!'});
             }
             else {
                 res.json({success:true, msg: 'User registered'});
@@ -86,6 +87,26 @@ router.get('/:id', function(req, res, next){
     User.getUserById(req.params.id, function(err, user){
         res.json(user);
     })
+});
+
+router.put("/updateUser/:id", function(req, res, next){
+    User.getUserById(req.params.id, function(err, user){
+        if(err){ throw err; }
+
+        if(!user){
+            return res.json({success: false, msg: 'Wrong user'});
+        }
+
+        User.updateUser(req.params.id, req.body, function(err, updateUser){
+            if(err){ throw err; }
+
+            if(!updateUser){
+                 return res.json({success: false, msg: 'ERROR updateUser'});
+            }
+
+            res.json({success: true, msg: 'User update'});
+        });
+    });
 });
 
 module.exports = router;
