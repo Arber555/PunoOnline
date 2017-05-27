@@ -22,7 +22,8 @@ const UserSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     freelancer: {
         type: Boolean
@@ -41,14 +42,25 @@ const UserSchema = mongoose.Schema({
     },
     statusi: {
         type: Boolean,
-        required: true
+        required: true,
+        default: true
+    },
+    active: {
+        type: Boolean,
+        require: true,
+        default: false
     }
+
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.getUserById = function(id, callback){
     User.findById(id, callback);
+}
+
+module.exports.getUserByEmail = function(email, callback){
+    User.findOne({email: email},callback);
 }
 
 module.exports.getUserByUsername = function(username, callback){
@@ -79,4 +91,12 @@ module.exports.removeUser = function(id, callback){
 
 module.exports.updateUser = function(id, updateUser, callback){
     User.update({_id: mongoose.Types.ObjectId(id)}, updateUser, callback);
+
 }
+
+
+
+/*module.exports.resetUsernameByEmail = function(email, callback){
+    User.findOne({email: email}, callback);
+}*/
+

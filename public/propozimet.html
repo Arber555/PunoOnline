@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Propozo</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/propozimet.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+
+    
+    <script type="text/javascript">
+        if(!window.localStorage.getItem('id_token')) {
+            window.location.replace('login.html');
+        }
+    </script>
+
+   <!-- <script>
+      function makeEditable(div){
+          div.style.border = "1px solid #000";
+          div.style.padding = "20px";
+          div.contentEditable = true;
+      }
+      function makeReadOnly(div){
+          div.style.border = "none";
+          div.style.padding = "20px";
+          div.contentEditable = false;
+          //alert("Run Ajax POST request here to save the div.innerHTML \
+          //or div.textContent to the database.");
+      }
+    </script>-->
+
+
+</head>
+
+<body>
+    <div id="layout">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">FREELANCING</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-left">
+           <li ><a id="punet" href="job-feed.html">PUNET</a></li>
+        </ul> 
+        <ul class="nav navbar-nav navbar-right">
+          <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
+          <li class="dropdown">
+            <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="freelancer-profile.html">PROFILI IM</a></li>
+              <li><a href="edit-profile.html">EDITO PROFILIN</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a id="logout" href="login.html">QKYQU</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+<div id="content" style="padding-left: 140px">
+  
+   
+     <div class="row">
+          <div class="col-xs-10 col-sm-10 col-md-10">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-xs-10 col-sm-10 col-md-10">
+                         <h2 class="font-500">Dergo nje Propozim</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    
+    <div class="row">
+          <div class="col-xs-10 col-sm-10 col-md-10">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-xs-10 col-sm-10 col-md-10">
+                        <h4>Cila eshte shuma qe ju deshironi te ofroni per kete projekt?</h4>
+                        
+                        <div class="pagesa-form" >
+                           <div class="row">
+                            <div class="col-md-6">
+                                <label>
+                                    <h5 class="tag-bottom"><strong>Pagesa me ore</strong></h5>
+                                    <h6>Shuma totale qe klienti do e shoh ne propozimin tuaj</h6>
+                                     
+                                </label>   
+                            </div>
+                            <div class="col-md-4 col-md-offset-1">
+                                <div class="input-group width-im tag-top">
+                                    <span class="pull-left">$</span>
+                                    <input name="shuma" id="shuma" type="number" min="1" max="999" class="width-im text-right form-control" />
+                                    <div class="pull-right"> /ore</div>
+                                </div>   
+                            </div>
+                           </div> 
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="well well-sm">
+                  <div class="row">
+                      <div id="textarea" class="col-xs-10 col-sm-10 col-md-10">
+                            <h5 style="margin-bottom: 20px" for="pershkrimi" >Letra Rekomanduese</h5>
+                            <textarea  name="pershkrimi" id="pershkrimi" placeholder="Une jam..." class="form-control" cols="20" rows="10" ></textarea>
+                        </div>
+                  </div>
+                  
+              </div>
+              
+              <input type="submit" id="btn-signup" class="btn btn-custom btn-lg btn-block" value="Propozo">
+          </div>
+      </div>
+</div>
+
+      
+    <footer id="footer" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p><br>© 2017</p>
+                    <p>Powered by <strong><a href="#" target="_blank">Freelancing</a></strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div> 
+</body>
+
+    <script>
+        $("#btn-signup").on("click", function(event) {
+            event.preventDefault();
+
+           var url = window.location.href;
+           var projectID = url.split("?");
+            
+            
+            var oferta = {
+                'shuma': $("#shuma").val(),
+                'pershkrimi': $("#pershkrimi").val(),
+                'projectID': projectID[1],
+                'userID': localStorage.getItem('user_id')
+            };
+            console.log(oferta);
+
+            
+            
+            
+
+              $.ajax({
+                type: 'POST',
+                url:'http://localhost:3000/ofertat/create',
+                data: JSON.stringify(oferta),
+                contentType: 'application/json',
+                dataType: 'JSON',
+                headers: {
+                    'Authorization': localStorage.getItem('id_token')
+                }
+             }).done(function( response ) {
+                if(response.success) {
+                    console.log('mirmirtiqajekabon')
+                } else {
+                    alert('Error: ' + response.msg);
+                }
+            });
+        });
+    </script>
+    
+</html>

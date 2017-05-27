@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Create Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/create-profile.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+
+    
+    <script type="text/javascript">
+        if(!window.localStorage.getItem('id_token')) {
+            window.location.replace('login.html');
+        }
+
+        $(function(){
+           
+            $.ajax({
+                    type: 'GET',
+                    url:'http://localhost:3000/profiles/userProfile/' + localStorage.getItem('user_id'),
+                    contentType: 'application/json',
+                    dataType: 'JSON',
+                    headers: {
+                        'Authorization': localStorage.getItem('id_token')
+                    }
+                }).done(function( data ) {
+                    if(data.success) {
+                      //  window.location.replace('freelancer-profile.html');
+                        window.location.replace('freelancer-profile.html');
+                    } 
+            });
+        });
+       
+    </script>
+
+    <script type="text/javascript">
+        
+    </script>
+
+</head>
+
+<body>
+    <div id="layout">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Freelancing</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a id="logout" href="login.html"> QKYQU</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <section id="select-skills">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 col-xs-offset-0">
+                    <div class="head">
+                        <h3 class="text-center">Miresevini: </h3>
+                    <!--<button (click)="toggleName()" >show name</button>-->
+                    </div>
+                    <form role="form" method="post" id="createProfile-form"  autocomplete="off">
+                        <h3>Informata rreth vetes tuaj</h3>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="profesioni">
+                                    Sherbimet qe mund ti ofroni klientit?</label>
+                                <select name="profesioni" id="profesioni" class="form-control">
+                                    <option value="">-- Zgjidh nje profesion --</option>
+                                    <hr style="border: 1px solid red">
+                                    <option value="Web, Mobile & Software Dev">Web, Mobile & Software Dev</option>
+                                    <option value="IT & Networking">IT & Networking</option>
+                                    <option value="Design & Creative">Design & Creative</option>
+                                    <option value="Accounting & Consulting">Accounting & Consulting</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="edukimi" class="control-label">Universiteti/Edukimi</label>
+                                <input name="edukimi" id="edukimi" type="text" class="form-control" placeholder="Emri Universitetit"  />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ora" class="control-label">Pagesa</label>
+                                € /orë<input  name="ora" id="ora"  type="number" min="2" class="form-control" placeholder="999"  /> 
+                            </div>
+                        </div>
+                       <!-- <div class="col-md-6">
+                            <label for="filePicker">Zgjedhni foton e profilit:</label><br>
+                            <input  name="foto_name" type="file" id="filePicker">
+                        </div>-->
+                        <div class="col-md-6">
+                            <label for="inp" class="custom-file-upload">
+                                <i class="fa fa-upload"></i> Ngarko foto
+                            </label>
+                            <input id="inp" type='file'>
+                            <input type="hidden" id="base64stringi"  value="">
+                        </div> 
+                        <div id="textarea" class="col-md-8">
+                            <label for="pershkrimi">Pershkrim rreth vetes</label>
+                            <textarea  name="pershkrimi" id="pershkrimi" placeholder="Une jam..." class="form-control" cols="20" rows="10" ></textarea>
+                        </div>
+                        <div class="col-md-4" id="foto" style="border: 2px solid gray; width: 155px">
+                            <img id="img" height="220" width="150" style="margin-left: -16px">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="shteti" >
+                                    Shteti</label>
+                                <select name="shteti" id="shteti" class="form-control">
+                                    <option value="">Zgjidh Shtetin</option>
+                                    <hr>
+                                    <option value="Kosove">Kosove</option>
+                                    <option value="Shqiperi">Shqiperi</option>
+                                    <option value="Maqedoni">Maqedoni</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="qyteti" class="control-label">Qyteti</label>
+                                <input name="qyteti" id="qyteti"  type="text" class="form-control"  />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="adresa" class="control-label">Adresa</label>
+                                <input name="adresa" id="adresa"  type="text" class="form-control"  />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="telefoni" class="control-label">Numri telefonit</label>
+                                <input name="telefoni" id="telefoni" type="text" class="form-control" placeholder="049-700-700"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4" style="float: right;">
+                            <input type="submit" id="btn-perfundo" class="btn btn-custom btn-lg btn-block" value="Shiko profilin dhe perfundo"> 
+                        </div>
+                    </form>
+                </div>
+            </div>
+           <div class="push"></div>
+        </section>
+
+        
+        <footer id="footer" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><br>© 2017</p>
+                        <p>Powered by <strong><a href="#" target="_blank">Freelancing</a></strong></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script type="text/javascript">
+        function readFile() {
+  
+              if (this.files && this.files[0]) {
+                
+                var FR = new FileReader();
+                
+                FR.addEventListener("load", function(e) {
+                  document.getElementById("img").src       = e.target.result;
+                  //document.getElementById("base64stringi").innerHTML = e.target.result;
+                  //console.log(e.target.result);
+                  var abc = e.target.result;
+                  //console.log(abc.charAt(22));
+                  var k = abc.split(",");
+                  document.getElementById("base64stringi").value = k[1];
+                  
+                }); 
+                
+                FR.readAsDataURL( this.files[0] );
+              }
+              
+            }
+
+            document.getElementById("inp").addEventListener("change", readFile);
+    </script>
+    
+
+    
+
+
+
+
+    <script type="text/javascript">
+        $(function(){
+            $("#createProfile-form").on("submit", function(event) {
+                $(function() {
+
+                    $.validator.addMethod("phoneRegex", function(value, element) {
+                        return this.optional(element) || /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/i.test(value);
+                    }, "Numri telefonit eshte invalid!");
+
+                    $.validator.addMethod("noSpace", function(value, element) { 
+                      return value.indexOf(" ") < 0 && value != ""; 
+                    }, "Nuk lejohen hapesirat!");
+
+                    $("#createProfile-form").validate({
+                        rules: {
+                            profesioni: {
+                                required: true
+                            },
+                            edukimi: {
+                                required: true,
+                                minlength: 10,
+                                maxlength: 50,
+                                number: false
+                            },
+                            ora: {
+                                required: true,
+                                number: true,
+                                maxlength: 3,
+                                noSpace: true
+                            },
+                            pershkrimi: {
+                                required: true,
+                                minlength: 100,
+                                maxlength: 5000
+                            },
+                            shteti: {
+                                required: true
+                            },
+                            qyteti: {
+                                required: true,
+                                minlength: 3,  
+                                maxlength: 30
+                            },
+                            adresa: {
+                                required: true,
+                                minlength: 10, 
+                                maxlength: 40
+                            },
+                            telefoni: {
+                                required: true,
+                                maxlength: 15,
+                                phoneRegex: "Required"
+                            }
+                        }, 
+                    messages: {
+                            profesioni: {
+                                required: "* Ju lutem zgjidhni nje profesion!"
+                            },
+                            edukimi: {
+                                required: "* Kjo fushe eshte e kerkuar!",
+                                minlength: $.validator.format("* Shtypni minimum {0} karaktere!"),
+                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!"),
+                                number: "* Nuk lejohet te shtypen numra"
+                            },
+                            ora: {
+                                required: "Kjo fushe eshte e kerkuar!",
+                                maxlength: $.validator.format("* Shtypni maximum {0} numra!"),
+                                number: "* Ju lutem shtypni numra!"
+                            },
+                            pershkrimi: {
+                                required: "* Kjo fushe eshte e kerkuar!",
+                                minlength: $.validator.format("* Shtypni minimum {0} karaktere!"),
+                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!")
+                            },
+                            shteti: {
+                                required: "* Ju lutem zgjidhni nje shtet!"
+                            },
+                            qyteti: {
+                                required: "* Kjo fushe eshte e kerkuar!",
+                                minlength: $.validator.format("* Shtypni minimum {0} karaktere!"),
+                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!")
+                            },
+                            adresa: {
+                                required: "* Kjo fushe eshte e kerkuar!",
+                                minlength: $.validator.format("* Shtypni minimum {0} karaktere!"),
+                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!")
+                            },
+                            telefoni: {
+                                required: "* Kjo fushe eshte e kerkuar!",
+                                maxlength: $.validator.format("* Shtypni maximum {0} numra!"),
+                                number: "* Ju lutem shtypni numra!"
+                            }
+                        }
+                    });
+                });
+
+
+                event.preventDefault();
+
+                var profile = {
+                  'profesioni': $('#profesioni').val(),
+                  'edukimi': $('#edukimi').val(),
+                  'ora': $('#ora').val(),
+                  'pershkrimi': $('#pershkrimi').val(),
+                  'telefoni': $('#telefoni').val(),
+                  'shteti': $('#shteti').val(),
+                  'qyteti': $('#qyteti').val(),
+                  'adresa': $('#adresa').val(),
+                  'foto_name': $('#base64stringi').val(),
+                  'userID': localStorage.getItem('user_id')
+                };
+
+               //console.log($('#base64stringi').val());
+                //window.localStorage.setItem('id_token', loginUser.token);
+
+                 $.ajax({
+                    type: 'POST',
+                    url:'http://localhost:3000/profiles/create',
+                    data: JSON.stringify(profile),
+                    contentType: 'application/json',
+                    dataType: 'JSON',
+                    headers: {
+                        'Authorization': localStorage.getItem('id_token')
+                    }
+                 }).done(function( data ) {
+                    if(data.success) {
+                        
+                        window.location.replace('freelancer-profile.html');
+                        localStorage.setItem('profile', JSON.stringify(data.profile));
+
+                        
+                    } else {
+                        alert('Error: ' + data.msg);
+                    }
+                });
+            });
+
+
+  
+        $('#logout').click( function() {
+            window.localStorage.clear();
+        });
+            
+        });
+
+
+    </script>
+</body>
+
+</html>

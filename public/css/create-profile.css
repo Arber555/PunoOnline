@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-top: 25px;
+}
+
+#foto {
+  margin-top: 15px;
+  margin-left: 50px;
+}
+
+html,
+body {
+  width: 100%;
+  background-color: #f8f8f8;
+}
+
+.well {
+  background-color: white;
+}
+
+#logout {
+  font-weight: 700;
+  color: white;
+}
+
+#logout:hover {
+  color: #222222;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.navbar-default .navbar-header .navbar-brand {
+  color: #F05F40;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#layout {
+  min-height: 100%;
+  height: auto !important;
+}
+
+
+#select-skills {
+  padding: 40px;
+  box-sizing: border-box;
+  border: 2px solid #e0e0e0;
+  background-color: #f8f8f8;
+  margin-right: auto;
+  margin-left: auto;
+  height: 100%
+  margin-bottom: 100px;
+}
+
+@media (min-width: 3px){
+  #select-skills {
+    width: 1000px;
+  }
+}
+
+@media (min-width: 2px) {
+  #select-skills {
+    width: 760px;
+  }
+}
+
+#select-skills .row {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+textarea .from-control {
+  resize: vertical;
+  line-height: 1.42857;
+}
+
+input .form-control, textarea .form-control {
+  padding: 12px;
+  border-radius: 2px;
+  box-shadow: none;
+  color: #222222;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+
+#pershkrimi {
+  height: 100%;
+  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box; 
+   box-sizing: border-box; 
+}
+
+
+#layout #select-skills {
+  width: 70%
+}
+
+.head {
+    color: black;
+}
+
+#form-hr {
+  border-color:#F05F40;
+  border-width:3px;
+  width: 100%;
+}
+
+.btn-custom {
+    color: #fff;
+	  background-color: #F05F40;
+}
+.btn-custom:hover,
+.btn-custom:focus {
+    color: #fff;
+}
+
+.btn.btn-custom {
+    font-size: 14px;
+
+}
+
+.navbar-nav {
+    margin-right: 10px;
+}
+.navbar-default {
+  border-color: rgba(34, 34, 34, 0.05);
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  transition: all 0.35s;
+  background-color: #F05F40;
+}
+.navbar-default .navbar-header .navbar-brand {
+  color: white;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.navbar-default .navbar-header .navbar-brand:hover,
+.navbar-default .navbar-header .navbar-brand:focus {
+  color: #222222;
+}
+.navbar-default .navbar-header .navbar-toggle {
+  font-weight: 700;
+  font-size: 12px;
+  color: #222222;
+  text-transform: uppercase;
+}
+.navbar-default .nav > p > a,
+.navbar-default .nav > p > a:focus {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13px;
+  color: white;
+  text-decoration: none;
+}
+.navbar-default .nav > p > a:hover,
+.navbar-default .nav > p > a:focus:hover {
+  color: #222222;
+}
+.navbar-default .nav > p.active > a,
+.navbar-default .nav > p.active > a:focus {
+  color: #F05F40 !important;
+  background-color: transparent;
+}
+.navbar-default .nav > p.active > a:hover,
+.navbar-default .nav > p.active > a:focus:hover {
+  background-color: transparent;
+}
+
+.error {
+	color: red;
+}
+
+
+#footer {
+    position: relative;
+    bottom:0;
+    height: 100px;
+    width: 100%;
+    background-color:#6d6d6d;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+#footer p {
+    margin-bottom: 0;
+}
+#footer a {
+    color: inherit;
+}
