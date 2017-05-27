@@ -20,7 +20,7 @@ router.post('/register', function(req, res, next){
         statusi: req.body.statusi
     });
 
-     Profile.getUserByUsername(req.body.username, function(err, user){
+     User.getUserByUsername(req.body.username, function(err, user){
         if(err){throw err;}
         //console.log(userID);
         if(user)

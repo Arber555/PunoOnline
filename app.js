@@ -5,6 +5,12 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+//
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
+const port = process.env.PORT || 3000;
+
 
 // Connect To Database
 mongoose.connect(config.database);
@@ -19,7 +25,7 @@ mongoose.connection.on('error', (err) => {
   console.log('Database error: '+err);
 });
 
-const app = express();
+
 
 const users = require('./routes/users');
 const profiles =require('./routes/profiles'); 
@@ -31,8 +37,11 @@ const vlersimet = require('./routes/vlersimet');
 const ofertat = require('./routes/ofertat');
 const kontratatvirtuale = require('./routes/kontratatvirtuale');
 
+//chati
+//const chat = require(./chat/chat);
+
 //Port Number
-const port = 3000;
+//const port = 3000;
 
 // CORS Middleware
 app.use(cors());
@@ -68,5 +77,99 @@ app.get('/', function(req, res){
 app.listen(port, function(){
   console.log('Server started on port '+port);
 });
+
+
+
+
+//chat
+
+const userss = {};
+const connections = [];
+
+app.get('/chat', function(req, res, next){
+    res.sendFile(__dirname + '/public/chat.html');
+})
+
+io.sockets.on('connection', function(socket){
+
+    socket.on('new user', function(data, callback){
+        if(data in userss){
+            callback(false);
+        }
+        else
+        {
+            callback(true);
+            socket.nickname = data;
+            userss[socket.nickname] = socket;
+            updateNicknames();
+        }
+    });
+
+    function updateNicknames(){
+        io.sockets.emit('usernames', Object.keys(userss));
+    }
+
+    socket.on('send message', function(data, name, callback){
+        var msg = data.trim();
+
+         if(name in userss)
+         {
+            userss[name].emit('whisper', {msg: msg, nick: socket.nickname});
+         }
+         else
+         {
+
+         }
+        //io.sockets.emit('new message', {msg: data, nick: socket.nickname});
+    });
+
+    socket.on('disconnect', function(data){
+        if(!socket.nickname) return;
+        delete userss[socket.nickname];
+        updateNicknames();
+    });
+
+    //codi vjeter osht posht
+
+    //connections.push(socket);
+    /*connections[socket.id] = {username: socket.username, socket: socket};
+    console.log('connections '+ connections.length);
+
+    socket.on("disconnect", function(data){
+        users.splice(users.indexOf(socket.username), 1);
+        updateUsernames();
+        connections.splice(connections.indexOf(socket), 1);
+        console.log('disconnect '+ connections.length);
+    });
+    
+    socket.on('send message', function(data){
+        console.log(data);
+        io.sockets.emit('new message', {msg: data, user: socket.username});
+    });
+
+    socket.on('new user', function(data ,callback){
+        callback(true);
+        socket.username = data;
+        users[socket.username] = socket.id;
+        //users.push(socket.username);
+        updateUsernames();
+    });
+
+
+    //u shtu
+    socket.on('private message', function(to, message){
+        console.log(connections[users[to]]);
+        io.connections[users[to]].socket.emit('new message', {message: message, user: connections[users[to]].username});
+    });
+
+    function updateUsernames(){
+        io.sockets.emit('get users', users);
+    }*/
+});
+
+//chat u kry
+
+
+
 
 //coment testues per git push asdsdasd
