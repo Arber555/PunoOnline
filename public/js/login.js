@@ -25,7 +25,7 @@ $(function(){
                         window.localStorage.setItem('user_id', data.user.id);
 
                        // window.location.replace('create-profile.html');
-                        
+
 						p(localStorage.getItem('user_id'));
 						
 						/*if(x != null && x != "sboni"){

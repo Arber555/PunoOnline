@@ -4,9 +4,8 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
-<<<<<<< HEAD
 const Profile = require('../models/profile');
-=======
+
 const bcrypt = require('bcryptjs');
 
 var nodemailer = require("nodemailer");
@@ -29,7 +28,6 @@ var rand,mailOptions,host,link;
 
 
 
->>>>>>> 59fe86b01d2290ce30cf60c1c654bdb2a5fe4820
 
 //Register
 router.post('/register', function(req, res, next)
@@ -136,9 +134,9 @@ router.get('/changePass/:email', function(req,res)
         {
             host = req.get('host');
             rand = user.id;
-            link="http://"+req.get('host')+"/users/cahngePass/"+user.id;  // Qetu vjen URL per qe tqon te page per me ndru passin
+            link="http://"+req.get('host')+"/forget-password.html";  // Qetu vjen URL per qe tqon te page per me ndru passin
             mailOptions ={
-                to : newUser.email,
+                to : user.email,
                 subject : "Please change your password.",
                 text : "Click here to change password: "+link 
             }
@@ -189,6 +187,11 @@ router.post('/authenticate', function(req, res, next){
         if(!user){
             return res.json({success: false, msg: 'User not found'});
         }
+
+        else if(user.active == false)
+        {
+            return res.json({success: false, msg: 'Ju lutem verifikoni accountin tuaj.'});
+        }
        
         User.comparePassword(password, user.password, function(err, isMatch){
              if(err){ throw err;}
@@ -228,8 +231,7 @@ router.get('/:id', function(req, res, next){
     })
 });
 
-<<<<<<< HEAD
-=======
+
 router.get('/getUserByEmail/:email', function(req, res, next){
     User.getUserByEmail(req.params.email, function(err, user){
         if(err)
@@ -241,7 +243,6 @@ router.get('/getUserByEmail/:email', function(req, res, next){
     })
 });
 
->>>>>>> 59fe86b01d2290ce30cf60c1c654bdb2a5fe4820
 router.put("/updateUser/:id", function(req, res, next){
     User.getUserById(req.params.id, function(err, user){
         if(err){ throw err; }
@@ -262,8 +263,6 @@ router.put("/updateUser/:id", function(req, res, next){
     });
 });
 
-<<<<<<< HEAD
-=======
 /*router.get("/resertUsernameByEmail/:email", function(req, res, next)
 {
     User.resetUsernameByEmail(req.params.email, function(err, user)
@@ -296,5 +295,4 @@ router.put("/updateUser/:id", function(req, res, next){
     });
 });*/
 
->>>>>>> 59fe86b01d2290ce30cf60c1c654bdb2a5fe4820
 module.exports = router;

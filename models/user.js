@@ -44,14 +44,11 @@ const UserSchema = mongoose.Schema({
         type: Boolean,
         required: true,
         default: true
-<<<<<<< HEAD
-=======
     },
     active: {
         type: Boolean,
         require: true,
         default: false
->>>>>>> 59fe86b01d2290ce30cf60c1c654bdb2a5fe4820
     }
 
 });
@@ -94,12 +91,12 @@ module.exports.removeUser = function(id, callback){
 
 module.exports.updateUser = function(id, updateUser, callback){
     User.update({_id: mongoose.Types.ObjectId(id)}, updateUser, callback);
-<<<<<<< HEAD
+
 }
-=======
-}
+
+
 
 /*module.exports.resetUsernameByEmail = function(email, callback){
     User.findOne({email: email}, callback);
 }*/
->>>>>>> 59fe86b01d2290ce30cf60c1c654bdb2a5fe4820
+
