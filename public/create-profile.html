@@ -312,7 +312,16 @@
                         }
                     });
                 });
-
+                
+               // var a = '{"name":"foto.jpg","content_type":"image/jpg","file":"'+$('#base64stringi').val()'"}';
+                
+                var fname = {
+                    'name' : "foto.jpg",
+                    'content_type' : "image/jpg",
+                    'file' : $('#base64stringi').val()
+                }
+                
+               
 
                 event.preventDefault();
 
@@ -325,9 +334,11 @@
                   'shteti': $('#shteti').val(),
                   'qyteti': $('#qyteti').val(),
                   'adresa': $('#adresa').val(),
-                  'foto_name': $('#base64stringi').val(),
+                  'foto_name': fname,
                   'userID': localStorage.getItem('user_id')
                 };
+                
+                
 
                //console.log($('#base64stringi').val());
                 //window.localStorage.setItem('id_token', loginUser.token);
@@ -343,12 +354,13 @@
                     }
                  }).done(function( data ) {
                     if(data.success) {
-                        
+                        console.log("sdfsdfd");
                         window.location.replace('freelancer-profile.html');
                         localStorage.setItem('profile', JSON.stringify(data.profile));
 
                         
                     } else {
+                        console.log("aaaaaaaaaaa");
                         alert('Error: ' + data.msg);
                     }
                 });

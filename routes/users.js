@@ -134,7 +134,7 @@ router.get('/changePass/:email', function(req,res)
         {
             host = req.get('host');
             rand = user.id;
-            link="http://"+req.get('host')+"/forget-password.html";  // Qetu vjen URL per qe tqon te page per me ndru passin
+            link="http://127.0.0.1:49225/public/forget-password.html?id="+rand;  // Qetu vjen URL per qe tqon te page per me ndru passin
             mailOptions ={
                 to : user.email,
                 subject : "Please change your password.",
@@ -143,10 +143,9 @@ router.get('/changePass/:email', function(req,res)
             smtpTransport.sendMail(mailOptions, function(error, response){
                 if(error)
                 {
-                    res.end("error");
-                }else
-                {
-                    res.end("sent");
+                    throw error;
+                }else{
+                    res.json({success: true, msg: 'Emaili u dergua me sukses!.'});
                 }
             });
         }
@@ -169,7 +168,7 @@ router.put("/updatePassUser/:id", function(req, res, next){
             if(!updateUser){
                  return res.json({success: false, msg: 'ERROR updateUser'});
             }
-
+            console.log(updateUser);
             res.json({success: true, msg: 'User pass update'});
         });
     });

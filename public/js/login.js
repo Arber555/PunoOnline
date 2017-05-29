@@ -25,7 +25,7 @@ $(function(){
                         window.localStorage.setItem('user_id', data.user.id);
 
                        // window.location.replace('create-profile.html');
-
+					
 						p(localStorage.getItem('user_id'));
 						
 						/*if(x != null && x != "sboni"){
@@ -56,6 +56,7 @@ $(function(){
 						
 					  //  window.location.replace('freelancer-profile.html');
 						//window.location.replace('freelancer-profile.html');
+						
 						x = "freelancer-profile.html";
 						console.log(x);
 						window.location.replace('freelancer-profile.html');

@@ -317,7 +317,7 @@
                     'datalindjes': $("input[name='datalindjes']").val(),
                     //'statusi' : true
                 };
-                console.log(newUser);
+               
 
 
 
@@ -329,7 +329,7 @@
 					dataType: 'JSON'
 				 }).done(function( response ) {
                     if(response.success) {
-                        window.location.replace('login.html')
+                        window.location.replace('verify-account.html')
                     } else {
                         alert('Error: ' + response.msg);
                     }

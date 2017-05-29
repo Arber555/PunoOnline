@@ -218,9 +218,13 @@ router.get('/userProfile/:id', function(req, res, next){
             
             const professionName = profession.name;
             profile.professionName;
+<<<<<<< HEAD
             
             profile.foto_name = base64_encode(profile.foto_name);
 
+=======
+            profile.foto_name = base64_encode(profile.foto_name);
+>>>>>>> 54655401d4b9d26aad2665a51909a15726608a99
             res.json({success: true, msg:'Profile exists', profile, profesioni: professionName});
         });
     });

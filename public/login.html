@@ -74,7 +74,7 @@
         </div> <!-- /.container -->
     </section>
 
-   <div class="modal fade forget-modal" tabindex="-1" role="dialog" aria-labelledby="myForgetModalLabel" aria-hidden="true">
+   <div id="forgetPass-modal" class="modal fade forget-modal" tabindex="-1" role="dialog" aria-labelledby="myForgetModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -158,17 +158,12 @@
                 contentType: 'application/json',
                 dataType: 'JSON'
             }).done(function( data ) {
-                if(data) {
-                    //window.location.replace('login.html');
-                    console.log("aaaaaaaaaa");
+                if(data.success) {
+                    window.location.replace('login.html');
                 } else {
                     alert('Error: ' + data.msg);
                 }
             });
-            
-            
-            
-            
         });
     });
         

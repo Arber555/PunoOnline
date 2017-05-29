@@ -70,6 +70,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
+            <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
           <li  class="dropdown">
             <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -90,7 +91,7 @@
               <div class="well well-sm">
                   <div class="row">
                       <div class="col-sm-4 col-md-4">
-                          <img src="img/profile.jpg" alt="" class="img-rounded img-responsive" />
+                          <img id="profilePic" src="img/profile.jpg" alt="" class="img-rounded img-responsive" />
                       </div>
                       <div class="col-sm-6 col-md-8">
                           <h4 id="emri-freelancerit"><span style="color: gray; float: right;">$/ora</span><strong id="paret" style="float:right; margin-right: 5px"> </strong></h4> 
@@ -144,104 +145,6 @@
       </div>
   </div>
 
-
-  <div class="row">
-        <div class="col-md-5">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <span class="glyphicon glyphicon-comment"></span> Chat
-                    <!--<div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                        </button>
-                        <ul class="dropdown-menu slidedown">
-                            <li><a href="#"><span class="glyphicon glyphicon-refresh">
-                            </span>Refresh</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-ok-sign">
-                            </span>Available</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-remove">
-                            </span>Busy</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-time"></span>
-                                Away</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-off"></span>
-                                Sign Out</a></li>
-                        </ul>
-                    </div>-->
-                </div>
-                <div class="panel-body">
-                    <ul class="chat">
-                        <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="img/rtopalli.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Ragip Topalli</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="right clearfix"><span class="chat-img pull-right">
-                            <img src="img/profile.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-                                    <strong class="pull-right primary-font">Arber Mulla</strong>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="img/rtopalli.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Ragip Topalli</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="right clearfix"><span class="chat-img pull-right">
-                            <img src="img/profile.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-                                    <strong class="pull-right primary-font">Arber Mulla</strong>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                        <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat">
-                                Send</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer id="footer" >
         <div class="container">
             <div class="row">
@@ -256,13 +159,28 @@
 
     
 
-    
+   <script type="text/javascript">
+       function decodeBase64Image(dataString) {
+          var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+            response = {};
+
+          if (matches.length !== 3) {
+            return new Error('Invalid input string');
+          }
+
+          response.type = matches[1];
+          response.data = new Buffer(matches[2], 'base64');
+
+          return response;
+        }
+   </script>
 
 
 
 
     <script type="text/javascript">
         $(function(){
+
            
             $.ajax({
                     type: 'GET',
@@ -274,13 +192,18 @@
                     }
                  }).done(function( data ) {
                     if(data.success) {
+                        
                       //  window.location.replace('freelancer-profile.html');
-                      console.log(window.localStorage.getItem('id_token'));
+                      //console.log(window.localStorage.getItem('id_token'));
                         localStorage.setItem('profile', JSON.stringify(data.profile));
                         $("#edukimi").html("<strong>" + data.profile.edukimi + "</strong>");
                         $("#pershkrimi").text(data.profile.pershkrimi);
                         $("#profesioni").text(data.profesioni);
-                        $("#paret").text(data.profile.ora);
+                        $("#paret").text(data.profile.ora);                        
+                        $('#profilePic').attr('src', "data:image/jpeg;base64,"+data.profile.foto_name);
+                        $('.chatPic').attr('src', "data:image/jpeg;base64,"+data.profile.foto_name);
+                        
+                        //console.log(data.profile.foto_name);
                     } else {
                         alert('Error: ' + data.msg);
                     }

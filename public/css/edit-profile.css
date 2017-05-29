@@ -21,6 +21,15 @@ body {
   color: #222222;
 }
 
+#mesazhat {
+  font-weight: 700;
+  color: white;
+}
+
+#mesazhat:hover {
+    color: #222222;
+}
+
 #profiliDropdown {
   color: #222222;
   background-color: #F05F40;

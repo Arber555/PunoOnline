@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Verifiko llogarine</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+
+    <!-- Theme CSS -->
+    <link href="css/verify-account.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        if(window.localStorage.getItem('id_token')) {
+            window.location.replace('freelancer-profile.html');
+           
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="index.html">Freelancing</a>
+        </div>
+
+       
+    </nav>
+
+    <section id="verify-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                    <h1 style="font-size: 50px">Ju lutem verifikon llogarine tuaj!</h1>
+                    
+                    <h3>Emaili per verifikim eshte derguar ne emailin tuaj!</h3>
+                    
+                    <h5 id="delayMsg"></h5>
+                </div> <!-- /.col-xs-12 -->
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p><br>© 2017</p>
+                    <p>Powered by <strong><a href="#" target="_blank">Freelancing</a></strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  
+    <!-- Theme JavaScript -->
+   
+
+    
+
+    <script type="text/javascript">
+        $(function() {
+            document.getElementById('delayMsg').innerHTML = 'Ju lutem prisni do te ridrejtoheni pas <span id="countDown">8</span> sekonda...';
+            var count = 8;
+            setInterval(function(){
+                count--;
+                document.getElementById('countDown').innerHTML = count;
+                if (count == 0) {
+                    window.location = 'login.html'; 
+                }
+            },1000);
+        });
+    </script>
+    
+
+        
+   
+</body>
+
+</html>
