@@ -76,7 +76,7 @@ app.get('/', function(req, res){
 })
 
 //start server
-app.listen(port, function(){
+server.listen(port, function(){
   console.log('Server started on port '+port);
 });
 
@@ -89,12 +89,12 @@ const userss = {};
 const connections = [];
 
 app.get('/chat', function(req, res, next){
-    res.sendFile(__dirname + '/public/chat.html');
+    res.sendfile(__dirname + '/chat.html');
 })
 
 io.sockets.on('connection', function(socket){
 
-    socket.on('new user', function(data, callback){
+    socket.on('new user', function(data, callback){ //fornt end te lodin shto metode per emit userin
         if(data in userss){
             callback(false);
         }
@@ -102,6 +102,7 @@ io.sockets.on('connection', function(socket){
         {
             callback(true);
             socket.nickname = data;
+            console.log(socket.nickname);
             userss[socket.nickname] = socket;
             updateNicknames();
         }
@@ -112,10 +113,12 @@ io.sockets.on('connection', function(socket){
     }
 
     socket.on('send message', function(data, name, callback){
+       // console.log(typeof data);
         var msg = data.trim();
 
          if(name in userss)
          {
+            console.log(name +"send");
             userss[name].emit('whisper', {msg: msg, nick: socket.nickname});
          }
          else

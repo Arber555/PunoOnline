@@ -4,7 +4,7 @@
 
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="../socket.io/socket.io.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
         <div id="userFormArea" class="row">
@@ -50,68 +50,13 @@
                     </div>
                     <div class="panel-body">
                         <ul class="chat" id="chat-list">
-                            <!--<li class="left clearfix"><span class="chat-img pull-left">
-                                <img src="img/rtopalli.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                            </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font">Ragip Topalli</strong> <small class="pull-right text-muted">
-                                            <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                        dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="right clearfix"><span class="chat-img pull-right">
-                                <img src="img/profile.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                            </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-                                        <strong class="pull-right primary-font">Arber Mulla</strong>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                        dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="left clearfix"><span class="chat-img pull-left">
-                                <img src="img/rtopalli.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                            </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font">Ragip Topalli</strong> <small class="pull-right text-muted">
-                                            <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                        dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="right clearfix"><span class="chat-img pull-right">
-                                <img src="img/profile.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                            </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-                                        <strong class="pull-right primary-font">Arber Mulla</strong>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                        dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>-->
+                           
                         </ul>
                     </div>
                     <form id="messageForm">
                         <div class="panel-footer">
                             <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <input id="message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                                 <span class="input-group-btn">
                                     <input type="submit" class="btn btn-warning btn-sm" id="btn-chat" value="Send Message" />
                                 </span>
@@ -137,7 +82,7 @@
                 var userFormArea = $("#userFormArea");
                 var userForm = $("#userForm");
                 var userListForm = $("#userListForm");
-                //var users = $('#users');
+                var users = $('#users');
                 var username = $("#username");
                 var chat = $("#chat");
                 var messageForm = $("#messageForm");
@@ -146,11 +91,12 @@
                 var messageArea = $('#messageArea');
                 //
                 var chatList = $('#chat-list');
-                var meFolForma = $('#meFolForm');
-                var meFol = $('meFol');
+                var meFolForm = $('#meFolForm');
+                var meFol = $('#meFol');
 
                 userForm.submit(function(e){   //jasht perdorimit
                     e.preventDefault();
+                    console.log( username.val());
                     socket.emit('new user', username.val(), function(data){
                         /*if(data)
                         {
@@ -180,7 +126,7 @@
                     console.log(idU);
                 });
 
-                meFolForma.submit(function(e){
+                meFolForm.submit(function(e){
                     e.preventDefault();
 
                     console.log(meFol.val());
@@ -189,7 +135,8 @@
                 messageForm.submit(function(e){
                     e.preventDefault();
                     //socket.emit('send message', message.val());
-                    socket.emit('send message', message.val(), idU, function(data){
+                    console.log(message.val());
+                    socket.emit('send message', message.val(), meFol.val(), function(data){
                         chat.append('<p>'+data.nick+' : '+ data.msg +'</p>');
                         console.log("o ka hin me sa duket ???");
                     });
@@ -197,8 +144,8 @@
                     chatList.append("<li class='left clearfix'><span class='chat-img pull-left'>"+
                             "</span>"+
                                 "<div class='chat-body clearfix'>"+
-                                    "<div class='header'>"+
-                                        "<strong class='primary-font'>"+window.localStorage.getItem('username')+"</strong> <small class='pull-right text-muted'>"+
+                                    "<div class='header'>"+             //+window.localStorage.getItem('username')+ te you
+                                        "<strong class='primary-font'>you</strong> <small class='pull-right text-muted'>"+
                                             "<span class='glyphicon glyphicon-time'></span>12 mins ago</small>"+
                                     "</div>"+
                                     "<p>"+message.val()+"</p>"+
@@ -209,7 +156,8 @@
                 });
 
                 socket.on('whisper' ,function(data){
-                    chat.append("<li class='left clearfix'><span class='chat-img pull-left'>"+
+                    console.log("sdsdsdsdsdsdsd");
+                    chatList.append("<li class='left clearfix'><span class='chat-img pull-left'>"+
                             "</span>"+
                                 "<div class='chat-body clearfix'>"+
                                     "<div class='header'>"+
@@ -220,58 +168,7 @@
                                 "</div>"+
                             "</li>");
                 });
-                /*idU.ready(function(){
-                    console.log(idU);
-                });
-                /*idU.click(function(){
-                    console.log("mrenda");
-                    messageArea.show();
-                });*/
-
-                //codi vjeter
-                /*var socket = io.connect();
-                var messageForm = $("#messageForm");
-                var message = $("#message");
-                var chat = $("#chat");
-                var messageArea = $("#messageArea");
-                var userFormArea = $("#userFormArea");
-                var userForm = $("#userForm");
-                var users = $("#users");
-                var username = $("#username");
-
-                messageForm.submit(function(e){
-                    e.preventDefault();
-                    //socket.emit('send message', message.val());
-                    socket.emit('private message', 'Arber', message.val());
-                    message.val('');
-                });
-
-                socket.on('new message', function(data){
-                    chat.append('<div class="well"><strong>'+ data.user +'</strong>:'+data.msg+'</div>');
-                });
-
-                userForm.submit(function(e){
-                    e.preventDefault();
-                    socket.emit('new user', username.val(), function(data){
-                        if(data)
-                        {
-                            userFormArea.hide();
-                            messageArea.show();
-                        }
-                    });
-                    username.val('');
-                });
-
-                socket.on('get users', function(data){
-                    var html = '';
-
-                    for(i = 0;i < data.length; i++)
-                    {
-                        html += "<li class='list-group-item'>"+data[i]+"</li>"
-                    }
-
-                    users.html(html);
-                });*/
+                
             });
       </script>
 
