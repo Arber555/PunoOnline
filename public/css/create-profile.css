@@ -13,6 +13,15 @@ input[type="file"] {
     margin-top: 25px;
 }
 
+#mesazhat {
+  font-weight: 700;
+  color: white;
+}
+
+#mesazhat:hover {
+    color: #222222;
+}
+
 #foto {
   margin-top: 15px;
   margin-left: 50px;

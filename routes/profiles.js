@@ -218,7 +218,7 @@ router.get('/userProfile/:id', function(req, res, next){
             
             const professionName = profession.name;
             profile.professionName;
-            
+            profile.foto_name = base64_encode(profile.foto_name);
             res.json({success: true, msg:'Profile exists', profile, profesioni: professionName});
         });
     });

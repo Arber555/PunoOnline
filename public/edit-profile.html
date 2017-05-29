@@ -52,6 +52,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
+            <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
           <li class="dropdown">
             <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -73,7 +74,7 @@
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 70px">
       <div class="text-center">
-        <img src="img/profile.jpg" alt="avatar"  height="140px" style="border-radius: 50%">
+        <img src="" alt="avatar" id="editPic" height="140px" style="border-radius: 50%">
         <h6>Upload nje foto tjeter...</h6>
         <input type="file" class="text-center center-block well well-sm">
       </div>
@@ -228,6 +229,7 @@
                         $("#ora").val(data.profile.ora);
                         $("#telefoni").val(data.profile.telefoni);
                         $("#profesioni").val(data.profesioni);
+                        $('#editPic').attr('src', "data:image/jpeg;base64,"+data.profile.foto_name);
 
                     } else {
                         alert('Error: ' + data.msg);
@@ -304,7 +306,7 @@
 
     <script type="text/javascript">
       // Update Profile
-      /* $(function(){
+       $(function(){
             $("#changeUserData").on("submit", function(event) {
 
                 event.preventDefault();
@@ -336,7 +338,7 @@
                   }
                 });
             });
-        });*/
+        });
     </script>
 
     <script type="text/javascript">

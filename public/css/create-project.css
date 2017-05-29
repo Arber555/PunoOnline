@@ -18,6 +18,15 @@ body {
   
 }
 
+#mesazhat {
+  font-weight: 700;
+  color: white;
+}
+
+#mesazhat:hover {
+    color: #222222;
+}
+
 #krijimiprojektit:hover {
   color: #222222;
 }

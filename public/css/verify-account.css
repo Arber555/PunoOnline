@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+}
+
+html,
+body {
+  width: 100%;
+  background-color: #f8f8f8;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.navbar-default .navbar-header .navbar-brand {
+  color: #F05F40;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#verify-container {
+    margin-top:5%;
+    padding-top: 50px
+
+}
+
+#verify-container h1 {
+    color: #F05F40;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+#verify-container h3 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+#verify-container h5 {
+    text-align: center;
+}
+
+
+
+#footer {
+    position: absolute;
+    bottom:0;
+    height: 100px;
+    width: 100%;
+    background-color:#6d6d6d;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
+#footer p {
+    margin-bottom: 0;
+}
+#footer a {
+    color: inherit;
+}
+
+/* navat */
+
+
+.navbar-nav {
+    margin-right: 10px;
+}
+.navbar-default {
+  border-color: rgba(34, 34, 34, 0.05);
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  transition: all 0.35s;
+  background-color: #F05F40;
+}
+.navbar-default .navbar-header .navbar-brand {
+  color: white;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.navbar-default .navbar-header .navbar-brand:hover,
+.navbar-default .navbar-header .navbar-brand:focus {
+  color: #222222;
+}
+.navbar-default .navbar-header .navbar-toggle {
+  font-weight: 700;
+  font-size: 12px;
+  color: #222222;
+  text-transform: uppercase;
+}
+.navbar-default .nav > p > a,
+.navbar-default .nav > p > a:focus {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13px;
+  color: white;
+  text-decoration: none;
+}
+.navbar-default .nav > p > a:hover,
+.navbar-default .nav > p > a:focus:hover {
+  color: #222222;
+}
+.navbar-default .nav > p.active > a,
+.navbar-default .nav > p.active > a:focus {
+  color: #F05F40 !important;
+  background-color: transparent;
+}
+.navbar-default .nav > p.active > a:hover,
+.navbar-default .nav > p.active > a:focus:hover {
+  background-color: transparent;
+}
