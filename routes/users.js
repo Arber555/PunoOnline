@@ -104,21 +104,19 @@ router.get('/verify/:id',function(req,res)
                         if(!updateUser){
                             return res.json({success: false, msg: 'ERROR updateUser'});
                         }
-
-                        res.json({success: true, msg: 'User update'});
                     });
-                    res.end("Email "+mailOptions.to+" is been Successfully verified");
+                     res.json({success: true, msg: 'Email has been verified!'});
                 }
             })
         }
         else
         {
-            res.end("Bad Request");
+             res.json({success: false, msg: 'Bad request!'});
         }
     }
     else
     {
-        res.end("Request is from unknown source");
+        res.json({success: false, msg: 'Request is from unknown source'});
     }
 });
 
@@ -134,7 +132,7 @@ router.get('/changePass/:email', function(req,res)
         {
             host = req.get('host');
             rand = user.id;
-            link="http://127.0.0.1:49225/public/forget-password.html?id="+rand;  // Qetu vjen URL per qe tqon te page per me ndru passin
+            link="http://localhost:8080/public/forget-password.html?id="+rand;  // Qetu vjen URL per qe tqon te page per me ndru passin
             mailOptions ={
                 to : user.email,
                 subject : "Please change your password.",
