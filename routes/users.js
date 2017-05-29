@@ -7,15 +7,11 @@ const User = require('../models/user');
 const Profile = require('../models/profile');
 
 const bcrypt = require('bcryptjs');
-
-var nodemailer = require("nodemailer");
-var app = express();
+const nodemailer = require("nodemailer");
+const app = express();
 
 var smtpTransport = require('nodemailer-smtp-transport');
-/*
-    Here we are configuring our SMTP Server details.
-    STMP is mail server which is responsible for sending and recieving email.
-*/
+
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
@@ -24,10 +20,6 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
     }
 });
 var rand,mailOptions,host,link;
-/*------------------SMTP Over-----------------------------*/
-
-
-
 
 //Register
 router.post('/register', function(req, res, next)
@@ -46,39 +38,52 @@ router.post('/register', function(req, res, next)
     });
 
      User.getUserByUsername(req.body.username, function(err, user){
-        if(err){throw err;}
-        //console.log(userID);
+        if(err)
+        {
+            throw err;
+        }
         if(user)
         {
             return res.json({success: false, msg: 'Ky username ekziston.'});
         }
-        User.addUser(newUser, function(err, user){
-            if(err){
-                res.json({success: false, msg:'Ka ndodhur nje gabim!!!'});
-            }
-            else 
+
+        User.getUserByEmail(req.params.email, function(err, user){
+            if(err)
+                throw err;
+            else if (user)
+                res.json({success: false, msg: 'Useri me kete email ekziston.'});
+            else
             {
-                host = req.get('host');
-                rand = newUser.id;
-                link="http://"+req.get('host')+"/users/verify/"+newUser.id;
-                mailOptions ={
-                    to : newUser.email,
-                    subject : "Please confirm your Email account",
-                    text : "Click here to verify: "+link 
-                }
-                smtpTransport.sendMail(mailOptions, function(error, response){
-                    if(error)
+                User.addUser(newUser, function(err, user){
+                    if(err)
                     {
-                        res.end("error");
-                    }else
+                        throw err;
+                    }
+                    else 
                     {
-                        res.end("sent");
+                        host = req.get('host');
+                        rand = newUser.id;
+                        link="http://localhost:8080/public/login.html?id="+newUser.id;
+                        mailOptions ={
+                            to : newUser.email,
+                            subject : "Please confirm your Email account",
+                            text : "Click here to verify: "+link 
+                        }
+                        smtpTransport.sendMail(mailOptions, function(error, response){
+                            if(error)
+                            {
+                                res.end("error");
+                            }else
+                            {
+                                res.end("sent");
+                            }
+                        });
+
+                        res.json({success:true, msg: 'User registered. Please check your email for activation link.'});
                     }
                 });
-
-                res.json({success:true, msg: 'User registered. Please check your email for activation link.'});
             }
-        });
+        })
      });
 });
 
