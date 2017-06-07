@@ -26,16 +26,19 @@
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
+    <!-- socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="js/jquery.validate.js"></script>
 
     
     <script type="text/javascript">
-        if(!window.localStorage.getItem('id_token')) {
+       /*if(!window.localStorage.getItem('id_token')) {
             window.location.replace('login.html');
 
-        }
+        }*/
     </script>
 
 </head>
@@ -107,7 +110,7 @@
                </ul>
             </div>
             <div class="member_list">
-               <ul class="list-unstyled">
+               <ul class="list-unstyled" id="users">
                   <li class="left clearfix">
                      <span class="chat-img pull-left">
                      <img src="img/profile.jpg" alt="User Avatar" class="img-circle">
@@ -157,101 +160,21 @@
             </div>
          </div>
                 <div class="panel-body">
-                    <ul class="chat pull-right">
-                        <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="img/profile.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Ragip Topalli</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="right clearfix"><span class="chat-img pull-right">
-                            <img src="img/profile.jpg" class="chatPic" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-                                    <strong class="pull-right primary-font">Arber Mulla</strong>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="img/rtopalli.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Ragip Topalli</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="right clearfix"><span class="chat-img pull-right">
-                            <img src="img/profile.jpg" class="chatPic" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-                                    <strong class="pull-right primary-font">Arber Mulla</strong>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="img/rtopalli.jpg" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Ragip Topalli</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                         <li class="right clearfix"><span class="chat-img pull-right">
-                            <img src="img/profile.jpg" class="chatPic" alt="User Avatar" width="45" height="55" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-                                    <strong class="pull-right primary-font">Arber Mulla</strong>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
+                    <ul class="chat pull-right" id="chat-list">
+                        
+                        <!-- mesazhat -->
+                        
                     </ul>
                 </div>
                 <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                        <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat">
-                                Send</button>
-                        </span>
-                    </div>
+                    <form id="messageForm">
+                        <div class="input-group">
+                            <input id="message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                            <span class="input-group-btn">
+                                <input type="submit" class="btn btn-warning btn-sm" id="btn-chat" value="Send Message" />
+                            </span>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -272,7 +195,84 @@
 </div>
 
     
+     <script>
 
+        var idU = null;
+        function chatP(id){
+            if(id){
+                //messageArea.show();
+                console.log("mrenda chat");
+                idU = id;
+                console.log(idU);
+            }
+        }
+
+        $(function(){
+            var socket = io.connect();
+            var chatList = $('#chat-list');
+            var messageForm = $("#messageForm");
+            var message = $("#message");
+            var users = $("#users");
+
+            var url = window.location.href;
+            var id = url.split("=");
+            localStorage.setItem('username', id[1]);
+
+            socket.emit('new user',  localStorage.getItem('username'), function(data){
+                //#####
+            });
+
+
+            socket.on('usernames', function(data){ //jasht perdorimit per momentin
+                var html = '';
+
+                for(i = 0;i < data.length; i++){
+                    if(data[i] != localStorage.getItem('username'))                                                                                           //"+data[i]+"
+                        html += "<li class='list-group-item'><button type='button' id='"+data[i]+"' onclick='chatP(this.id)'>"+data[i]+"</button></li>";  
+                }
+
+                users.html(html);
+            });
+
+            messageForm.submit(function(e){
+                e.preventDefault();
+
+                console.log(message.val());
+                socket.emit('send message', message.val(), idU, function(data){
+                    //duhet me kthy callback diqka per me hi qetu mrenda????
+                    chat.append('<p>'+data.nick+' : '+ data.msg +'</p>');
+                });
+            // console.log(username);
+                chatList.append("<li class='left clearfix'><span class='chat-img pull-left'>"+
+                            "<img src='img/profile.jpg' alt='User Avatar' width='45' height='55' class='img-circle' />"+
+                        "</span>"+
+                            "<div class='chat-body clearfix'>"+
+                                "<div class='header'>"+             //+window.localStorage.getItem('username')+ te you
+                                    "<strong class='primary-font'>you</strong> <small class='pull-right text-muted'>"+
+                                        "<span class='glyphicon glyphicon-time'></span>12 mins ago</small>"+
+                                "</div>"+
+                                "<p>"+message.val()+"</p>"+
+                            "</div>"+
+                        "</li>");
+                message.val('');
+            });
+
+
+            socket.on('whisper' ,function(data){
+                console.log("sdsdsdsdsdsdsd");
+                chatList.append("<li class='right clearfix'><span class='chat-img pull-left'>"+
+                        "</span>"+
+                            "<div class='chat-body clearfix'>"+
+                                "<div class='header'>"+
+                                    "<strong class='primary-font'>"+data.nick+"</strong> <small class='pull-right text-muted'>"+
+                                        "<span class='glyphicon glyphicon-time'></span>12 mins ago</small>"+
+                                "</div>"+
+                                "<p>"+data.msg+"</p>"+
+                            "</div>"+
+                        "</li>");
+            });
+        });
+    </script>
 
 
 
