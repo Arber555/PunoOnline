@@ -114,6 +114,15 @@ body {
     color: white;
 }
 
+#projektet {
+    font-weight: 700;
+    color: white;
+}
+
+#projektet:hover {
+    color: #222222;
+}
+
 #krijimiprojektit:hover {
   color: #222222;
 }

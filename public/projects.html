@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Detajet e Projektit</title>
+    <title>My Projects</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -21,7 +21,7 @@
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/job-feed.css" rel="stylesheet">
+    <link href="css/projects.css" rel="stylesheet">
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -69,6 +69,7 @@
           <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
             <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
             <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
+            
           <li class="dropdown">
             <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -83,8 +84,9 @@
     </nav>
 
 
-<div id="content" style="padding-left: 140px">
-   <h3 class='emri_projektit' id="emri_proj"> </h3>
+<div id="content">
+      
+
 </div>
 
       
@@ -104,48 +106,57 @@
 
     
     <script type="text/javascript">
+        /*$('#content').delegate('div', 'click', function() {
+            var id = $("#project_id").attr("value");
+            console.log(id);
+        });*/
+
        $(document).ready(function() {
 
         
-           var a = window.location.href;
-           var k = a.split("?");
-           console.log(k[1]);
+
 
             $.ajax({
                     type: 'GET',
-                    url:'http://localhost:3000/projects/getProject/'+ k[1],
+                    url:'http://localhost:3000/projects/getAllProjects',
                     contentType: 'application/json',
                     dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
                  }).done(function( data ) {
                     if(data) {
+                        $.each(data, function(i, item) {
+                           /* $('#buxheti_projektit').html(item.buxheti_projektit);
+                            alert(item.buxheti_projektit);*/
+
+
                             $("#content").append("<div class='row'>"+
-                            "<div class='col-xs-8 col-sm-8 col-md-8'>"+
-                                "<div style='background-color: white' class='well well-sm'>"+
+                            "<div class='col-xs-8 col-sm-8 col-md-8 col-md-offset-2'>"+
+                                "<div class='well well-sm'>"+
                                     "<div class='row'>"+
                                         "<div class='col-sm-12 col-md-12'>"+
-                                            "<h3 style='margin-bottom: 50px'>Detajet</h3>"+
-                                            "<p style='margin-bottom: 30px' class='pershkrimi_projektit'>"+data.pershkrimi_projektit+"</p>"+ 
-                                            "<h5 style='margin-bottom: 20px'>Projekti do te zgjase: <strong class='koha_projektit' >"+data.koha_projektit+"</strong></h5>"+
-                                            "<h5>"+ "Buxheti projektit: <strong class='buxheti_projektit' >"+data.buxheti_projektit+"</strong> €</h5>"+
-                                             "<h5>"+ "Buxheti projektit: <strong class='buxheti_projektit' >"+data.buxheti_projektit+"</strong> €</h5>"+
-                                               
+                                            "<h3 class='emri_projektit'>"+ item.emri_projektit + "</h3>"+
+                                            "<hr style='border-top: 1px white solid; border-bottom: 1px #F05F40 solid'>"+
+                                            "<h5 style='margin-bottom: 20px'>Projekti do te zgjase: <strong class='koha_projektit' >"+item.koha_projektit+"</strong>"+ "&emsp;Buxheti projektit: <strong class='buxheti_projektit' >"+item.buxheti_projektit+"</strong> €</h5>"+
+                                            "<p class='pershkrimi_projektit'>"+item.pershkrimi_projektit+"</p>"+
+                                            "<input type='hidden' id='project_id'  value="+ item._id+">"+    
                                         "</div>"+
-                                        "<div class='col-sm-4 col-md-4'>" +
-                                          "<a href='propozimet.html?"+ k[1] + "' type='button' class='btn btn-default'>Ofert</a>"+
+                                        "<div class='col-sm-4 col-md-4 pull-right'>" +
+                                          "<a href='ofertat.html?"+ item._id + "' type='button' id='buttoni' class='btn btn-default'>OFERTAT RRETH KETIJ PROJEKTI</a>"+
                                         "</div>"+ 
                                     "</div>"+
                                 "</div>"+
                             "</div>"+
                         "</div>");
-                       $("#emri_proj").html(data.emri_projektit);
+                        });
                     } else {
                         alert('Error: ' + data.msg);
                     }
                 });
             });
+
+
+       /*$("div").click(function() {
+        console.log($("#project_id").attr("value"));
+      }); */
     </script>
 
 

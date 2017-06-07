@@ -24,6 +24,15 @@ h1, h2, h3, h4, h5, h6 {
     color: #222222;
 }
 
+#projektet {
+    font-weight: 700;
+    color: white;
+}
+
+#projektet:hover {
+    color: #222222;
+}
+
 .tag-bottom {
     margin-bottom: 10px!important;
 }

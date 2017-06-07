@@ -57,6 +57,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li><a id= "krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
+            <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
              <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
           <li class="dropdown">
             <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
@@ -209,9 +210,9 @@
                 $("#createProject-form").on("submit", function(event) {
 
                 var a = $('#koha_projektit').val() + " " + $('#koha').val();
-                console.log(a)
+             
 
-                  console.log("aaaaaaaa")
+                 
                 event.preventDefault();
 
                 var project = {
@@ -223,7 +224,7 @@
                   'userID': localStorage.getItem('user_id')
                 };
 
-                console.log(project);
+            
 
                 
 
@@ -240,7 +241,10 @@
                     }
                  }).done(function( data ) {
                     if(data.success) {
-                        window.localStorage.setItem('project_id', project.id)
+                        
+                        //console.log(project._id);
+                        //window.localStorage.setItem('project_id', project.id)
+                        
                         window.location.replace('job-feed.html');
                     } else {
                         alert('Error: ' + data.msg);
