@@ -1,0 +1,158 @@
+<html>
+    <head>
+        <title>Chat</title>
+
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <div id="userFormArea" class="row">
+              <form id="userForm">
+                  <div class="form-group">
+                      <label>Enter Username</label>
+                      <input class="form-control" id="username" />
+                      <br/>
+                      <input type="submit" class="btn btn-primary" value="Login" />
+                  </div>
+              </form>
+          </div>
+
+          <form id="meFolForm">
+                <input id="meFol" />
+                <input type="submit" class="btn btn-primary" value="fol" />
+          </form>
+         
+
+         <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-comment"></span> Chat
+                    </div>
+                    <div class="panel-body">
+                        <ul class="chat" id="chat-list">
+                           
+                        </ul>
+                    </div>
+                    <form id="messageForm">
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <span class="input-group-btn">
+                                    <input type="submit" class="btn btn-warning btn-sm" id="btn-chat" value="Send Message" />
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var idU = null;
+            function chatP(id){
+                if(id){
+                    //messageArea.show();
+                    console.log("mrenda chat");
+                    idU = id;
+                    console.log(idU);
+                }
+            }
+            $(function(){
+                var socket = io.connect();
+                var userFormArea = $("#userFormArea");
+                var userForm = $("#userForm");   //te logini
+                var userListForm = $("#userListForm");
+                var users = $('#users');
+                var username = $("#username");
+                var chat = $("#chat");
+                var messageForm = $("#messageForm");
+                var message = $("#message");
+                var userFormL = $('#userFormL');
+                var messageArea = $('#messageArea');
+                //
+                var chatList = $('#chat-list');
+                var meFolForm = $('#meFolForm');
+                var meFol = $('#meFol');
+
+                userForm.submit(function(e){   //jasht perdorimit
+                    e.preventDefault();
+                    console.log( username.val());
+                    socket.emit('new user', username.val(), function(data){
+                        /*if(data)
+                        {
+                            userFormArea.hide();
+                            userListForm.show();
+                        }*/
+                    });
+                    username.val('');
+                });
+
+                socket.on('usernames', function(data){ //jasht perdorimit per momentin
+                    var html = '';
+
+                    for(i = 0;i < data.length; i++)
+                    {                                                                                           //"+data[i]+"
+                        html += "<li class='list-group-item'><button type='button' id='"+data[i]+"' onclick='chatP(this.id)'>"+data[i]+"</button></li>";  
+                    }
+
+                    users.html(html);
+                });
+
+
+                userFormL.submit(function(e){  //me kond don me fol +permirsime duhet ... per momentin jasht perdorimit
+                    e.preventDefault();
+
+                    messageArea.show();
+                    console.log(idU);
+                });
+
+                meFolForm.submit(function(e){
+                    e.preventDefault();
+
+                    console.log(meFol.val());
+                });
+
+                messageForm.submit(function(e){
+                    e.preventDefault();
+                    //socket.emit('send message', message.val());
+                    console.log(message.val());
+                    socket.emit('send message', message.val(), meFol.val(), function(data){
+                        chat.append('<p>'+data.nick+' : '+ data.msg +'</p>');
+                        console.log("o ka hin me sa duket ???");
+                    });
+                // console.log(username);
+                    chatList.append("<li class='left clearfix'><span class='chat-img pull-left'>"+
+                            "</span>"+
+                                "<div class='chat-body clearfix'>"+
+                                    "<div class='header'>"+             //+window.localStorage.getItem('username')+ te you
+                                        "<strong class='primary-font'>you</strong> <small class='pull-right text-muted'>"+
+                                            "<span class='glyphicon glyphicon-time'></span>12 mins ago</small>"+
+                                    "</div>"+
+                                    "<p>"+message.val()+"</p>"+
+                                "</div>"+
+                            "</li>");
+
+                    message.val('');
+                });
+
+                socket.on('whisper' ,function(data){
+                    console.log("sdsdsdsdsdsdsd");
+                    chatList.append("<li class='left clearfix'><span class='chat-img pull-left'>"+
+                            "</span>"+
+                                "<div class='chat-body clearfix'>"+
+                                    "<div class='header'>"+
+                                        "<strong class='primary-font'>"+data.nick+"</strong> <small class='pull-right text-muted'>"+
+                                            "<span class='glyphicon glyphicon-time'></span>12 mins ago</small>"+
+                                    "</div>"+
+                                    "<p>"+data.msg+"</p>"+
+                                "</div>"+
+                            "</li>");
+                });
+                
+            });
+      </script>
+
+    </body>
+</html>

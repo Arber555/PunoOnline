@@ -19,6 +19,10 @@ $(function(){
                     if(data.success) {
                         window.localStorage.setItem('id_token', data.token);
                         window.localStorage.setItem('user_id', data.user.id);
+						window.localStorage.setItem('username', data.user.username);
+                       // window.location.replace('create-profile.html');
+					
+						p(localStorage.getItem('user_id'));
 						
 						p(localStorage.getItem('user_id'));
 

@@ -1,35 +1,33 @@
-users = {};
-connections = [];
+//const express = require('express');
 
-/*app.get('/', function(req, res, next){
-    res.sendFile(__dirname + '/index.html');
-})*/
+module.exports = io.sockets.on('connection', function(socket){
 
-io.sockets.on('connection', function(socket){
-
-    socket.on('new user', function(data, callback){
-        if(data in users){
+    socket.on('new user', function(data, callback){ //fornt end te lodin shto metode per emit userin
+        if(data in userss){
             callback(false);
         }
         else
         {
             callback(true);
             socket.nickname = data;
-            users[socket.nickname] = socket;
+            console.log(socket.nickname);
+            userss[socket.nickname] = socket;
             updateNicknames();
         }
     });
 
     function updateNicknames(){
-        io.sockets.emit('usernames', Object.keys(users));
+        io.sockets.emit('usernames', Object.keys(userss));
     }
 
     socket.on('send message', function(data, name, callback){
+       // console.log(typeof data);
         var msg = data.trim();
 
-         if(name in users)
+         if(name in userss)
          {
-            users[name].emit('whisper', {msg: msg, nick: socket.nickname});
+            console.log(name +"send");
+            userss[name].emit('whisper', {msg: msg, nick: socket.nickname});
          }
          else
          {
@@ -40,44 +38,7 @@ io.sockets.on('connection', function(socket){
 
     socket.on('disconnect', function(data){
         if(!socket.nickname) return;
-        delete users[socket.nickname];
+        delete userss[socket.nickname];
         updateNicknames();
     });
-
-    //codi vjeter osht posht
-
-    //connections.push(socket);
-    /*connections[socket.id] = {username: socket.username, socket: socket};
-    console.log('connections '+ connections.length);
-
-    socket.on("disconnect", function(data){
-        users.splice(users.indexOf(socket.username), 1);
-        updateUsernames();
-        connections.splice(connections.indexOf(socket), 1);
-        console.log('disconnect '+ connections.length);
-    });
-    
-    socket.on('send message', function(data){
-        console.log(data);
-        io.sockets.emit('new message', {msg: data, user: socket.username});
-    });
-
-    socket.on('new user', function(data ,callback){
-        callback(true);
-        socket.username = data;
-        users[socket.username] = socket.id;
-        //users.push(socket.username);
-        updateUsernames();
-    });
-
-
-    //u shtu
-    socket.on('private message', function(to, message){
-        console.log(connections[users[to]]);
-        io.connections[users[to]].socket.emit('new message', {message: message, user: connections[users[to]].username});
-    });
-
-    function updateUsernames(){
-        io.sockets.emit('get users', users);
-    }*/
 });
