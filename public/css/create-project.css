@@ -12,11 +12,28 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
+#menu-toggle {
+    color: white;
+}
+
+#menu-toggle:hover,
+#menu-toggle:focus,
+#menu-toggle:active {
+    background-color: #F05F40;
+    color: black;
+}
+
+.dropdown-menu li a {
+  font-weight: 700;
+}
+
 #krijimiprojektit {
   font-weight: 700;
   color: #222222;
   
 }
+
+
 
 #mesazhat {
   font-weight: 700;
@@ -130,12 +147,15 @@ input .form-control, textarea .form-control {
 }
 
 .btn-custom {
-    color: #fff;
-	  background-color: #F05F40;
+    color: black;
+    background-color: #40d1f0;
 }
+
 .btn-custom:hover,
-.btn-custom:focus {
-    color: #fff;
+.btn-custom:focus,
+.btn-custom:active {
+    color: black;
+    font-weight: 700;
 }
 
 .btn.btn-custom {

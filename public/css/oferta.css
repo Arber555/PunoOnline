@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+}
+
+html,
+body {
+  width: 100%;
+  background-color: #f8f8f8;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+#krijimiprojektit {
+  font-weight: 700;
+  color: white;
+}
+
+#mesazhat {
+  font-weight: 700;
+  color: white;
+}
+
+#mesazhat:hover {
+    color: #222222;
+}
+
+.btn-default {
+  background-color: #40d1f0;
+  color: black;
+}
+
+.btn-default:hover, 
+.btn-default:focus,
+.btn-default:active {
+  background-color: #40d1f0;
+  font-weight: 700;
+}
+
+.btn-warning {
+    color: black
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active {
+    color: black;
+    font-weight: 700;
+}
+
+
+#menu-toggle {
+    color: white;
+}
+
+#menu-toggle:hover,
+#menu-toggle:focus,
+#menu-toggle:active {
+    background-color: #F05F40;
+    color: black;
+}
+
+.dropdown-menu li a {
+  font-weight: 700;
+}
+
+.hr-divider {
+    border-top: 1px white solid; 
+    border-bottom: 1px #F05F40 solid
+}
+
+#profiliDropdown {
+  color: white;
+  background-color: #F05F40;
+}
+
+
+#emriprofil {
+  text-transform: uppercase !important;
+}
+
+#krijimiprojektit:hover {
+  color: #222222;
+}
+
+#punet {
+  font-weight: 700;
+  color: white;
+  
+}
+
+#punet:hover {
+  color: #222222;
+}
+
+#projektet {
+    font-weight: 700;
+    color: #222222;
+}
+
+
+
+.navbar-default .navbar-header .navbar-brand {
+  color: #F05F40;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.navbar-left .navbar-links {
+  color: black;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.navbar-left .navbar-links:hover,
+.navbar-left .navbar-links:focus,
+.navbar-left .navbar-links:active {
+  color: #F05F40;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+.head {
+    color: black;
+}
+
+#layout {
+  min-height: 100%;
+  height: auto !important;
+}
+
+.navbar-nav {
+    margin-right: 10px;
+}
+.navbar-default {
+  border-color: rgba(34, 34, 34, 0.05);
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  transition: all 0.35s;
+  background-color: #F05F40;
+}
+.navbar-default .navbar-header .navbar-brand {
+  color: white;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.navbar-default .navbar-header .navbar-brand:hover,
+.navbar-default .navbar-header .navbar-brand:focus {
+  color: #222222;
+}
+.navbar-default .navbar-header .navbar-toggle {
+  font-weight: 700;
+  font-size: 12px;
+  color: #222222;
+  text-transform: uppercase;
+}
+.navbar-default .nav > p > a,
+.navbar-default .nav > p > a:focus {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13px;
+  color: #222222;
+}
+.navbar-default .nav > p > a:hover,
+.navbar-default .nav > p > a:focus:hover {
+  color: #F05F40;
+}
+.navbar-default .nav > p.active > a,
+.navbar-default .nav > p.active > a:focus {
+  color: #F05F40 !important;
+  background-color: transparent;
+}
+.navbar-default .nav > p.active > a:hover,
+.navbar-default .nav > p.active > a:focus:hover {
+  background-color: transparent;
+}
+
+#footer {
+    position: relative;
+    bottom:0;
+    height: 100px;
+    width: 100%;
+    background-color:#6d6d6d;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+#footer p {
+    margin-bottom: 0;
+}
+#footer a {
+    color: inherit;
+}

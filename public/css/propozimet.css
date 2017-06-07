@@ -12,6 +12,21 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
+#menu-toggle {
+    color: white;
+}
+
+#menu-toggle:hover,
+#menu-toggle:focus,
+#menu-toggle:active {
+    background-color: #F05F40;
+    color: black;
+}
+
+.dropdown-menu li a {
+  font-weight: 700;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
 }
@@ -19,6 +34,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: white;
 }
+
+
 
 #mesazhat:hover {
     color: #222222;
@@ -37,10 +54,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 10px!important;
 }
 
-#btn-signup:hover {
-  color: #222222;
-}
-
 .tag-top {
     margin-top: 15px!important;
 }
@@ -52,6 +65,15 @@ h1, h2, h3, h4, h5, h6 {
 
 textarea {
   resize: vertical;
+}
+
+#shuma {
+    border: 2px solid #F05F40;
+    float: right;
+}
+
+#pershkrimi {
+    border: 2px solid #F05F40;
 }
 
 textarea .from-control {

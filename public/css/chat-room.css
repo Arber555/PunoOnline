@@ -12,6 +12,34 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
+#btn-chat {
+    background-color: #F05F40;
+}
+
+#btn-input:focus,
+#btn-input:active {
+    border-color: #F05F40!important;
+}
+
+#btn-chat:hover,
+#btn-chat:focus,
+#btn-chat:active {
+    background-color: #F05F40;
+    color: black;
+    font-weight: 500;
+}
+
+#menu-toggle {
+    color: white;
+}
+
+#menu-toggle:hover,
+#menu-toggle:focus,
+#menu-toggle:active {
+    background-color: #F05F40;
+    color: black;
+}
+
 
 .dropdown-menu li a {
   font-weight: 700;
@@ -110,9 +138,7 @@ body {
   color: #222222;
 }
 
-#mesazhat:hover {
-    color: white;
-}
+
 
 #projektet {
     font-weight: 700;

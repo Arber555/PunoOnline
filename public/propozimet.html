@@ -10,6 +10,7 @@
     <title>Propozo</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom Fonts -->
@@ -37,22 +38,6 @@
         }
     </script>
 
-   <!-- <script>
-      function makeEditable(div){
-          div.style.border = "1px solid #000";
-          div.style.padding = "20px";
-          div.contentEditable = true;
-      }
-      function makeReadOnly(div){
-          div.style.border = "none";
-          div.style.padding = "20px";
-          div.contentEditable = false;
-          //alert("Run Ajax POST request here to save the div.innerHTML \
-          //or div.textContent to the database.");
-      }
-    </script>-->
-
-
 </head>
 
 <body>
@@ -60,12 +45,15 @@
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html">FREELANCING</a>
+            <button id="menu-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-left">
-           <li ><a id="punet" href="job-feed.html">PUNET</a></li>
-        </ul> 
+        
         <ul class="nav navbar-nav navbar-right">
+             <li ><a id="punet" href="job-feed.html">PUNET</a></li>
           <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
             <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
             <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
@@ -87,10 +75,10 @@
   
    
      <div class="row">
-          <div class="col-xs-10 col-sm-10 col-md-10">
+          <div class="col-xs-8 col-sm-8 col-md-8 col-md-offset-1">
               <div class="well well-sm">
                   <div class="row">
-                      <div class="col-xs-10 col-sm-10 col-md-10">
+                      <div class="col-xs-12 col-sm-12 col-md-12">
                          <h2 class="font-500">Dergo nje Propozim</h2>
                       </div>
                   </div>
@@ -99,10 +87,11 @@
       </div>
     
     <div class="row">
-          <div class="col-xs-10 col-sm-10 col-md-10">
+        <div id="alertDanger"></div>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-md-offset-1">
               <div class="well well-sm">
                   <div class="row">
-                      <div class="col-xs-10 col-sm-10 col-md-10">
+                      <div class="col-xs-12 col-sm-12 col-md-12">
                         <h4>Cila eshte shuma qe ju deshironi te ofroni per kete projekt?</h4>
                         
                         <div class="pagesa-form" >
@@ -114,12 +103,23 @@
                                      
                                 </label>   
                             </div>
-                            <div class="col-md-4 col-md-offset-1">
+                            <div class="col-md-6">
+                                 
                                 <div class="input-group width-im tag-top">
-                                    <span class="pull-left">$</span>
-                                    <input name="shuma" id="shuma" type="number" min="1" max="999" class="width-im text-right form-control" />
-                                    <div class="pull-right"> /ore</div>
-                                </div>   
+                                   
+                                    <input name="shuma" id="shuma" type="number" min="1" max="999" class=" text-right form-control" />
+                                    
+                                </div> 
+                                <div class="row">
+                                    <span style="position: relative; bottom: 30px; right: 5px; font-weight: 500; font-size: 20px; ">$</span>
+                                </div>
+                                
+                                <div class="row">
+                                    <span style="position: relative; bottom: 60px; left: 135px; font-weight: 500; font-size: 20px; ">/ore</span>
+                                </div>
+                                
+                                
+                                
                             </div>
                            </div> 
                         </div>
@@ -129,15 +129,15 @@
               
               <div class="well well-sm">
                   <div class="row">
-                      <div id="textarea" class="col-xs-10 col-sm-10 col-md-10">
-                            <h5 style="margin-bottom: 20px" for="pershkrimi" >Letra Rekomanduese</h5>
+                      <div id="textarea" class="col-xs-12 col-sm-12 col-md-12 ">
+                            <h4 style="margin-bottom: 20px" for="pershkrimi" >Letra Rekomanduese</h4>
                             <textarea  name="pershkrimi" id="pershkrimi" placeholder="Une jam..." class="form-control" cols="20" rows="10" ></textarea>
                         </div>
                   </div>
                   
               </div>
               
-              <input type="submit" id="btn-signup" class="btn btn-custom btn-lg btn-block" value="Propozo">
+              <input type="submit"  id="btn-prop" class="btn btn-default btn-lg btn-block" value="Propozo">
           </div>
       </div>
 </div>
@@ -156,63 +156,6 @@
 </div> 
 </body>
 
-    <script>
-        $("#btn-signup").on("click", function(event) {
-            event.preventDefault();
-
-           var url = window.location.href;
-           var projectID = url.split("?");
-            
-            
-            var oferta = {
-                'shuma': $("#shuma").val(),
-                'pershkrimi': $("#pershkrimi").val(),
-                'projectID': projectID[1],
-                'userID': localStorage.getItem('user_id')
-            };
-            console.log(oferta);
-
-            
-            
-            
-
-              $.ajax({
-                type: 'POST',
-                url:'http://localhost:3000/ofertat/create',
-                data: JSON.stringify(oferta),
-                contentType: 'application/json',
-                dataType: 'JSON',
-                headers: {
-                    'Authorization': localStorage.getItem('id_token')
-                }
-             }).done(function( response ) {
-                if(response.success) {
-                    console.log('mirmirtiqajekabon')
-                } else {
-                    alert('Error: ' + response.msg);
-                }
-            });
-        });
-        
-        $(function(){
-           
-            $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/users/'+ localStorage.getItem('user_id'),
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                 }).done(function( data ) {
-                    if(data) {
-                      $("#emriprofil").text(data.emri);
-
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });
-    </script>
+    <script src="js/propozimet.js"></script>
     
 </html>

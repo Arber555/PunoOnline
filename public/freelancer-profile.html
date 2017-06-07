@@ -10,6 +10,7 @@
     <title>Freelancer Profile</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom Fonts -->
@@ -38,21 +39,6 @@
         }
     </script>
 
-   <!-- <script>
-      function makeEditable(div){
-          div.style.border = "1px solid #000";
-          div.style.padding = "20px";
-          div.contentEditable = true;
-      }
-      function makeReadOnly(div){
-          div.style.border = "none";
-          div.style.padding = "20px";
-          div.contentEditable = false;
-          //alert("Run Ajax POST request here to save the div.innerHTML \
-          //or div.textContent to the database.");
-      }
-    </script>-->
-
 
 </head>
 
@@ -61,14 +47,19 @@
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html">Freelancing</a>
+            
+            <button id="menu-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
         </div>
+        
+        
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-        <ul class="nav navbar-nav navbar-left">
-           <li ><a id="punet" href="job-feed.html">PUNET</a></li>
-        </ul> 
+     
 
         <ul class="nav navbar-nav navbar-right">
+            <li ><a id="punet" href="job-feed.html">PUNET</a></li>
           <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
             <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
             <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
@@ -89,36 +80,32 @@
     <div class="container">
       <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6">
+              <div id="alertDanger"></div>
               <div class="well well-sm">
                   <div class="row">
                       <div class="col-sm-4 col-md-4">
                           <img id="profilePic" src="img/profile.jpg" alt="" class="img-rounded img-responsive" />
                       </div>
                       <div class="col-sm-6 col-md-8">
-                          <h4 id="emri-freelancerit"><span style="color: gray; float: right;">$/ora</span><strong id="paret" style="float:right; margin-right: 5px"> </strong></h4> 
+                          <h4 ><strong id="emri-freelancerit"></strong>  <span style="color: gray; float: right;">€ /ora</span> <span id="paret" style="float:right; margin-right: 5px"> </span></h4> 
                           <p id="profesioni"><strong ></strong> </p>
-                          <!--<small><cite title="shteti qyteti">{{profile.qyteti}}, </cite><strong> {{profile.shteti}}</strong> <i class="glyphicon glyphicon-map-marker">
-                          </i></small>-->
-                          <p >
+                          <p>
                               <i id="emaili" class="glyphicon glyphicon-envelope"></i>
-                              <!--<i class="glyphicon glyphicon-globe"></i><a href="#">www.jquery2dotnet.com</a>-->
                               <br />
-                              <!--{{user.datalindjes | date: 'MM/dd/yyyy'}}-->
                               <i id="datalindjes" class="glyphicon glyphicon-gift"></i>
                           </p>
-                          <!-- Split button -->
-                          
                       </div>
-                       <!-- {{profile.pershkrimi}}-->
-                      <div class="col-sm-6 col-md-8">
-                              
-                      </div> 
+
+                      <div id="ratingDiv" class="col-sm-6 col-md-6"></div>
                   </div>
               </div>
           </div>
+          
       </div>
 
-
+        
+        
+        
        <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="well well-sm">
@@ -157,92 +144,10 @@
         </div>
     </footer>
 </div>
-
+    
     
 
-   <script type="text/javascript">
-       function decodeBase64Image(dataString) {
-          var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-            response = {};
-
-          if (matches.length !== 3) {
-            return new Error('Invalid input string');
-          }
-
-          response.type = matches[1];
-          response.data = new Buffer(matches[2], 'base64');
-
-          return response;
-        }
-   </script>
-
-
-
-
-    <script type="text/javascript">
-        $(function(){
-
-           
-            $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/profiles/userProfile/' + localStorage.getItem('user_id'),
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                 }).done(function( data ) {
-                    if(data.success) {
-                        
-                      //  window.location.replace('freelancer-profile.html');
-                      //console.log(window.localStorage.getItem('id_token'));
-                        localStorage.setItem('profile', JSON.stringify(data.profile));
-                        $("#edukimi").html("<strong>" + data.profile.edukimi + "</strong>");
-                        $("#pershkrimi").text(data.profile.pershkrimi);
-                        $("#profesioni").text(data.profesioni);
-                        $("#paret").text(data.profile.ora);                        
-                        $('#profilePic').attr('src', "data:image/jpeg;base64,"+data.profile.foto_name);
-                        $('.chatPic').attr('src', "data:image/jpeg;base64,"+data.profile.foto_name);
-                        
-                        //console.log(data.profile.foto_name);
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });
-
-        $(function(){
-           
-            $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/users/'+ localStorage.getItem('user_id'),
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                 }).done(function( data ) {
-                    if(data) {
-                        var monthNames = ["January", "February", "March", "April", "May", "June",
-                          "July", "August", "September", "October", "November", "December"
-                        ];
-                        var date = new Date(data.datalindjes);
-                        $("#emri-freelancerit").html("<strong>" +data.emri +" "+ data.mbiemri +"</strong>");
-                        $("#datalindjes").html("<strong> " + (monthNames[date.getMonth()] ) + '/' + date.getDate() + '/' +  date.getFullYear() +"</strong>");
-                        $("#emaili").html("<strong> " + data.email + "</strong>");
-                        $("#emrimbiemri").html("<strong>" + data.emri + " " + data.mbiemri +"</strong>");
-                        $("#emriprofil").text(data.emri);
-
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });
-  
-        $('#logout').click( function() {
-            window.localStorage.clear();
-        });
-    </script>
+   <script src="js/freelancer-profile.js"></script>
 </body>
 
 </html>

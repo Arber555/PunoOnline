@@ -34,13 +34,17 @@ router.post('/create',  passport.authenticate('jwt', {session: false}), function
                 return res.json({success: false, msg: 'Kjo kategori nuk ekziston.'});
             }
 
+            newProject.kategoria = category;
+
             Project.addProject(newProject, function(err, project)
             {
                 if(err) throw err;
-                else
-                {
-                    res.json({success: true, msg: 'Project created'});
+                
+                if(!project) {
+                    return res.json({success: false, msg: 'Ky projekt nuk ekziston.'});
                 }
+
+                res.json({success: true, msg: 'Project created'});
             });
         });
     });
@@ -56,7 +60,7 @@ router.get('/getProject/:id', passport.authenticate('jwt', {session: false}), fu
         {
             return res.json({success: false, msg: 'Ky projekt nuk ekziston.'});
         }
-        res.json(project);
+        res.json({success: true, project: project}); 
     });
 });
 

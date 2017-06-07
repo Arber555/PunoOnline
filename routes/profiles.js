@@ -127,10 +127,11 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), function(req,
 });
 
 //update profile
-router.put('/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){  //duhet me kqyr per validim mi tregu gipes me bo front end
+router.put('/editProfile/:id', passport.authenticate('jwt', {session: false}), function(req, res, next){  //duhet me kqyr per validim mi tregu gipes me bo front end
     const profileID = req.params.id;
     const profile = req.body;
-    const professionName = req.body.profesioni;
+    //const professionName = req.body.profesioni;
+    //Ndrimi profesionit
     
     /*const portfolio = req.body.portfolio;
     if(portfolio) //update nese ka portfolio
@@ -175,16 +176,65 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), function(req,
     }
     else
     {*/
-    Profession.getProfessionByName(professionName, function(err, profession){
+    /*Profession.getProfessionByName(professionName, function(err, profession){
         if(err){
             throw err;
         }
 
         if(!profession){
             return res.json({success: false, msg: 'Zgjidh profesionin'});
+        }*/
+
+        //profile.profesioni = profession.id;
+
+
+        //var newProfile;
+        //foto
+        if(req.body.foto_name)
+        {
+            const file = req.body.foto_name;
+            
+            const randomFileName = randomString.generate({
+                length: 20,
+                charset: 'alphabetic'
+            });
+
+            //e run foton ne follderin profilePhotos
+            base64_decode(file.file, randomFileName);
+
+            const fotoPath = "./public/profilePhotos/"+randomFileName+".jpg";
+            profile.foto_name = fotoPath;
+           /* newProfile = new Profile({
+                telefoni: profile.telefoni,
+                foto_name: fotoPath,
+                ora: profile.ora,
+                edukimi: profile.edukimi,
+                mesatarja_vlersimit: profile.mesatarja_vlersimit,
+                pershkrimi: profile.pershkrimi,
+                shteti: profile.shteti,
+                qyteti: profile.qyteti,
+                adresa: profile.adresa,
+                userID: profile.userID
+            });*/
+        }
+        else {
+            /*newProfile = new Profile({
+                telefoni: profile.telefoni,
+                foto_name: "./public/profilePhotos/default.jpg",
+                ora: profile.ora,
+                edukimi: profile.edukimi,
+                mesatarja_vlersimit: profile.mesatarja_vlersimit,
+                pershkrimi: profile.pershkrimi,
+                shteti: profile.shteti,
+                qyteti: profile.qyteti,
+                adresa: profile.adresa,
+                userID: profile.userID
+            });*/
+            profile.foto_name = "./public/profilePhotos/default.jpg";
         }
 
-        profile.profesioni = profession.id;
+
+
         Profile.updateProfile(profileID, profile, function(err, profile){
             if(err){
                 res.json(err);
@@ -194,7 +244,7 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), function(req,
                 res.json({success: true, msg:'Profile update'});
             }
         });
-    });
+    //});
 });
 
 

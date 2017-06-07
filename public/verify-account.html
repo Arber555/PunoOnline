@@ -10,6 +10,7 @@
     <title>Verifiko llogarine</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom Fonts -->
@@ -74,29 +75,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  
-    <!-- Theme JavaScript -->
-   
 
-    
+    <script src="js/verify-timer.js"></script>
 
-    <script type="text/javascript">
-        $(function() {
-            document.getElementById('delayMsg').innerHTML = 'Ju lutem prisni do te ridrejtoheni pas <span id="countDown">8</span> sekonda...';
-            var count = 8;
-            setInterval(function(){
-                count--;
-                document.getElementById('countDown').innerHTML = count;
-                if (count == 0) {
-                    window.location = 'login.html'; 
-                }
-            },1000);
-        });
-    </script>
-    
-
-        
-   
 </body>
 
 </html>

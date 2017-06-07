@@ -10,6 +10,7 @@
     <title>Edit Profile</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom Fonts -->
@@ -43,14 +44,14 @@
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html">Freelancing</a>
+            <button id="menu-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-        <ul class="nav navbar-nav navbar-left">
-           <li ><a id="punet" href="job-feed.html">PUNET</a></li>
-        </ul>
-
         <ul class="nav navbar-nav navbar-right">
+            <li ><a id="punet" href="job-feed.html">PUNET</a></li>
           <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
             <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
             <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
@@ -72,35 +73,28 @@
       
   <div class="row well well-sm">
   <h1 class="page-header" align="center">Edito Profilin</h1>
+      <div id="alertDanger"></div>
     <!-- left column -->
-    <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 70px">
-      <div class="text-center">
-        <img src="" alt="avatar" id="editPic" height="140px" style="border-radius: 50%">
-        <h6>Upload nje foto tjeter...</h6>
-        <input type="file" class="text-center center-block well well-sm">
-      </div>
+    <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 70px;">
+      <div class="col-md-6" style="position: relative; top: 300px; left: 110px" >
+            <label for="inp" class="custom-file-upload">
+                <i class="fa fa-upload"></i> Ngarko foto
+            </label>
+            <input id="inp" type='file'>
+            <input type="hidden" id="base64stringi"  value="">
+        </div>
+        
+        <div  class="col-md-4" id="foto" style="border: 2px solid gray; width: 155px; margin-left: 120px;">
+            <img id="editPic" height="220" width="150" style="margin-left: -16px">
+        </div>
     </div>
-    <!-- edit form column -->
+
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-      <!--<div class="alert alert-info alert-dismissable">
-        <a class="panel-close close" data-dismiss="alert">×</a> 
-        <i class="fa fa-coffee"></i>
-        This is an <strong>.alert</strong>. Use this to show important messages to the user.
-      </div>-->
+     
       <h3 id="aaa">Informatat Personale</h3>
       <form class="form-horizontal" role="form" id="changeUserData" method="post" action="#">
-        <div class="form-group">
-          <label class="col-lg-3 control-label" for="emri">Emri:</label>
-          <div class="col-lg-8">
-            <input class="form-control" id="emri" onkeydown="return alphaOnly(event);" minlength="3" maxlength="20" type="text" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="mbiemri" class="col-lg-3 control-label">Mbiemri:</label>
-          <div class="col-lg-8">
-            <input class="form-control" id="mbiemri" onkeydown="return alphaOnly(event);" type="text" minlength="3" maxlength="20" required>
-          </div>
-        </div>
+       
+        
         <div class="form-group">
           <label for="username" class="col-lg-3 control-label">Username:</label>
           <div class="col-lg-8">
@@ -124,20 +118,7 @@
         </div>
       
        
-      <!--  <div class="form-group">
-            <label class="col-lg-3 control-label" for="profesioni" >
-                Ju jeni</label>
-              <div class="col-lg-8">
-                <select name="profesioni" id="profesioni" class="form-control">
-                    <option value="">-- Zgjidh nje profesion --</option>
-                    <hr style="border: 1px solid red">
-                    <option value="Web, Mobile & Software Dev">Web, Mobile & Software Dev</option>
-                    <option value="IT & Networking">IT & Networking</option>
-                    <option value="Design & Creative">Design & Creative</option>
-                    <option value="Accounting & Consulting">Accounting & Consulting</option>
-                </select>
-            </div>
-        </div>-->
+      
 
 
           <div class="form-group">
@@ -200,154 +181,7 @@
 </div>
     
 
-    <script type="text/javascript">
-      $('#logout').click( function() {
-            window.localStorage.clear();
-        });
-    </script>
-
-
-
-
-    <script type="text/javascript">
-        $(function(){
-           
-            $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/profiles/userProfile/' + localStorage.getItem('user_id'),
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                 }).done(function( data ) {
-                    if(data.success) {
-                      //  window.location.replace('freelancer-profile.html');
-                        localStorage.setItem('profile', JSON.stringify(data.profile));
-                        localStorage.setItem('profile_id', JSON.stringify(data.profile._id));
-                        $("#edukimi").val(data.profile.edukimi);
-                        $("#pershkrimi").val(data.profile.pershkrimi);
-                        $("#ora").val(data.profile.ora);
-                        $("#telefoni").val(data.profile.telefoni);
-                        $("#profesioni").val(data.profesioni);
-                        $('#editPic').attr('src', "data:image/jpeg;base64,"+data.profile.foto_name);
-
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });
-
-        $(function(){
-           
-            $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/users/'+ localStorage.getItem('user_id'),
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                 }).done(function( data ) {
-                    if(data) {
-                      //  window.location.replace('freelancer-profile.html');
-                      $("#emriprofil").text(data.emri);
-
-                      $("#emri").val(data.emri);
-                      $("#mbiemri").val(data.mbiemri);
-                      $("#username").val(data.username);
-                      $("#emaili").val(data.email);
-
-
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });
-
-
-
-  
-        
-    </script>
-
-    <script type="text/javascript">
-        //Update User
-       $(function(){
-            $("#changeUserData").on("submit", function(event) {
-
-                event.preventDefault();
-
-                var changeData = {
-                    'emri': $("#emri").val(),
-                    'mbiemri': $("#mbiemri").val(),
-                    'username': $("#username").val(),
-                    'email': $("#emaili").val(), //for get email 
-                };
-                
-
-
-
-                  $.ajax({
-                    type: 'PUT',
-                    url:'http://localhost:3000/users/updateUser/' + localStorage.getItem('user_id'),
-                    data: JSON.stringify(changeData),
-                    contentType: 'application/json',
-                    dataType: 'JSON'
-                  }).done(function( response ) {
-                    if(response.success) {
-                        window.location.replace('freelancer-profile.html')
-                    } else {
-                        alert('Error: ' + response.msg);
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-      // Update Profile
-       $(function(){
-            $("#changeUserData").on("submit", function(event) {
-
-                event.preventDefault();
-
-                var changeData = {
-                    'edukimi': $("#edukimi").val(),
-                    'pershkrimi': $("#pershkrimi").val(),
-                    'ora': $("#ora").val(),
-                    'telefoni': $("#telefoni").val(), 
-                    'profesioni': $("#profesioni").val()
-                };
-                
-                console.log($("#profesioni").val())
-
-                $.ajax({
-                  type: 'PUT',
-                  url:'http://localhost:3000/profiles/' + localStorage.getItem('profile_id'),
-                  data: JSON.stringify(changeData),
-                  contentType: 'application/json',
-                  dataType: 'JSON',
-                  headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                }).done(function( response ) {
-                  if(response.success) {
-                    window.location.replace('freelancer-profile.html')
-                  } else {
-                    alert('Error: ' + response.msg);
-                  }
-                });
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-       function alphaOnly(event) {
-          var key = event.keyCode;
-          return ((key >= 65 && key <= 90) || key == 8);
-        };
-    </script>
+    <script src="js/edit-profile.js"></script>
 </body>
 
 </html>

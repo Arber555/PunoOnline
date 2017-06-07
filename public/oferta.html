@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Oferta</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/oferta.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+
+    
+    <script type="text/javascript">
+        if(!window.localStorage.getItem('id_token')) {
+            window.location.replace('login.html');
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="layout">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">FREELANCING</a>
+                <button id="menu-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a id="punet" href="job-feed.html">PUNET</a></li>
+              <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
+                <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
+                <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
+
+              <li class="dropdown">
+                <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="freelancer-profile.html">PROFILI IM</a></li>
+                  <li><a href="edit-profile.html">EDITO PROFILIN</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a id="logout" href="login.html">QKYQU</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+
+        <div id="content">
+           
+            
+             
+            
+    <div class='row'>
+        <div id="alertDanger"></div>
+        <div class='col-xs-10 col-sm-10 col-md-10 col-md-offset-1'>
+            <div style='background-color: white' class='well well-sm'>
+                <div class='row'>
+                    <div class='col-sm-12 col-md-12'>
+                         <h3 class='emri_projektit'>Emri projektit</h3>
+                         <hr class="hr-divider">
+                        <h4>Informata Shtese:</h4>
+                        <h5 style='margin-bottom: 20px'>Klienti ka ofruar: <strong class='koha_projektit'>10<span> €/hr</span></strong>&emsp;Buxheti projektit: 150<p style='float: left' class='buxheti_projektit' id='buxheti_projektit'></p><span>     €</span></h5>
+                        <hr class="hr-divider">
+                            <h4>Pershkrimi:</h4>
+                            <p class='pershkrimi_projektit' class='form-control' cols='150' rows='8' placeholder="">Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di...</p>
+                            <hr class="hr-divider"/>
+                                <input type='hidden' id='project_id'  value="item._id">
+
+                    </div>
+                    <div class='col-sm-12 col-md-12'>
+                      <button class='btn btn-default'>PRANO</button>
+                        <button class='btn btn-warning'>REFUZO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+        </div>
+      
+    <footer id="footer" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p><br>© 2017</p>
+                    <p>Powered by <strong><a href="#" target="_blank">Freelancing</a></strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+    <script src="js/oferta.js"></script>
+</body>
+
+</html>

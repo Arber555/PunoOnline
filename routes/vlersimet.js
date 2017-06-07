@@ -97,7 +97,13 @@ router.get('/getAVGVlersimiByUser/:id', passport.authenticate('jwt', {session: f
         }
 
         const avg = sum / count;
-        res.json(avg);
+
+        if(avg < 0)
+        {
+            res.json({success: false, msg: 'Ka ndodhur nje gabim!'});;
+        }
+
+        res.json({success: true, avg: avg} );
     });
 });
 

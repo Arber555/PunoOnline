@@ -59,14 +59,30 @@ body {
   color: #222222;
 }
 
-.btn-custom {
-    color: #fff;
+#menu-toggle {
+    color: white;
+}
+
+.dropdown-menu li a {
+  font-weight: 700;
+}
+
+#menu-toggle:hover,
+#menu-toggle:focus,
+#menu-toggle:active {
     background-color: #F05F40;
+    color: black;
+}
+
+.btn-custom {
+    color: black;
+    background-color: #40d1f0;
 }
 .btn-custom:hover,
-.btn-custom:focus {
-    color: #fff;
-    background-color: #f9694a ;
+.btn-custom:focus,
+.btn-custom:active {
+    color: black;
+    font-weight: 700;
 }
 
 .btn.btn-custom {

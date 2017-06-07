@@ -12,6 +12,29 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
+.morecontent span {
+    display: none;
+}
+.morelink {
+    display: block;
+}
+
+.display-inline-block {
+    display: inline-block!important!;
+}
+
+.text-muted {
+    color: #7d7d7d;
+}
+
+.sm-bottom {
+    margin-bottom: 10px!important;
+}
+
+.sm-top {
+    margin-top: 10px!important!;
+}
+
 #krijimiprojektit {
   font-weight: 700;
   color: white;
@@ -26,16 +49,39 @@ body {
     color: #222222;
 }
 
+.f-profile-a {
+    color: #F05F40;
+}
+
+.f-profile-a:hover {
+    color: #F05F40;
+}
+
 .btn-default {
-  background-color: #F05F40;
+  background-color: #40d1f0;
   color: black;
 }
 
 .btn-default:hover, 
 .btn-default:focus,
 .btn-default:active {
-  background-color: #F05F40;
+  background-color: #40d1f0;
   font-weight: 700;
+}
+
+.dropdown-menu li a {
+  font-weight: 700;
+}
+
+#menu-toggle {
+    color: white;
+}
+
+#menu-toggle:hover,
+#menu-toggle:focus,
+#menu-toggle:active {
+    background-color: #F05F40;
+    color: black;
 }
 
 
@@ -69,9 +115,6 @@ body {
     color: #222222;
 }
 
-#projektet:hover {
-    color: white;
-}
 
 .navbar-default .navbar-header .navbar-brand {
   color: #F05F40;

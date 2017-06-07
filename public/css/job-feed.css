@@ -31,19 +31,34 @@ body {
     color: white;
 }
 
+#menu-toggle {
+    color: white;
+}
+
+.dropdown-menu li a {
+  font-weight: 700;
+}
+
+#menu-toggle:hover,
+#menu-toggle:focus,
+#menu-toggle:active {
+    background-color: #F05F40;
+    color: black;
+}
+
 #projektet:hover {
     color: #222222;
 }
 
 .btn-default {
-  background-color: #F05F40;
+  background-color: #40d1f0;
   color: black;
 }
 
 .btn-default:hover, 
 .btn-default:focus,
 .btn-default:active {
-  background-color: #F05F40;
+  background-color: #40d1f0;
   font-weight: 700;
 }
 

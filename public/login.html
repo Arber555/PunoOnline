@@ -10,6 +10,7 @@
     <title>Kyqu</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom Fonts -->
@@ -49,8 +50,11 @@
     <section id="login">
         <div class="container">
             <div class="row">
+                
                 <div class="col-xs-12">
                     <div class="form-wrap">
+                        <div id="alertDanger"></div>
+           
                     <h1>Kyqu dhe fillo te punosh!</h1>
                         <form role="form" method="post" id="login-form" autocomplete="off">
                             <div class="form-group">
@@ -166,6 +170,29 @@
             });
         });
     });
+        
+    $(function() {
+        var a = window.location.href;
+        var k = a.split('=');
+        
+        console.log(k[1]);
+        
+        if(a.includes("id")) {
+            console.log("aaaa");
+            $.ajax({
+                type: 'GET',
+                url:'http://localhost:3000/users/verify/'+ k[1],
+                contentType: 'application/json',
+                dataType: 'JSON'
+            }).done(function( data ) {
+                if(data.success) {
+                    alert(data.msg)
+                } else {
+                    alert('Error: ' + data.msg);
+                }
+            });
+        }
+    })
         
    
         

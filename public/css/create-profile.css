@@ -133,12 +133,14 @@ input .form-control, textarea .form-control {
 }
 
 .btn-custom {
-    color: #fff;
-	  background-color: #F05F40;
+    color: black;
+	  background-color: #40d1f0;
 }
 .btn-custom:hover,
-.btn-custom:focus {
-    color: #fff;
+.btn-custom:focus,
+.btn-custom:active {
+    color: black;
+    font-weight: 700;
 }
 
 .btn.btn-custom {

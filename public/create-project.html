@@ -10,26 +10,33 @@
     <title>Krijo Projekt</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" type="text/css">
+    
+ 
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-
-    <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    
+    
 
     <!-- Theme CSS -->
     <link href="css/create-project.css" rel="stylesheet">
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
-
+    <script src="js/jquery.validate.js"></script>
+    
+    
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/jquery.validate.js"></script>
-
+    
+ 
+    
+    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+   
     
     <script type="text/javascript">
         if(!window.localStorage.getItem('id_token')) {
@@ -37,9 +44,7 @@
         }
     </script>
 
-    <script type="text/javascript">
-        
-    </script>
+   
 
 </head>
 
@@ -48,14 +53,16 @@
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html">Freelancing</a>
+            <button id="menu-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-        <ul class="nav navbar-nav navbar-left">
-           <li ><a id="punet" href="job-feed.html">PUNET</a></li>
-        </ul>
+      
 
         <ul class="nav navbar-nav navbar-right">
+            <li ><a id="punet" href="job-feed.html">PUNET</a></li>
           <li><a id= "krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
             <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
              <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
@@ -75,11 +82,8 @@
 
     <section id="select-skills">
       <div class="row">
+          <div id="alertDanger"></div>
             <div class="col-md-12 col-sm-12 col-xs-12 col-xs-offset-0">
-                <div class="head">
-                    <h3 class="text-center"></h3>
-                <!--<button (click)="toggleName()" >show name</button>-->
-                </div>
                 <form role="form" method="post" id="createProject-form"  autocomplete="off" >
                     <h3>Informata rreth Projektit tuaj</h3>
                     <div class="col-md-6">
@@ -119,9 +123,28 @@
                                 </select>
                             </div>
                         </div>
+                    
+                    <div style="margin-top: 10px" class="col-md-4">
+                        <div class="form-group">
+                            <label for="kategorite">Kategorite</label>
+                            <select id="kategorite" class="form-control" multiple="multiple">
+                                <option value="BACK-END">BACK-END</option>
+                                <option value="FRONT-END">FRONT-END</option>
+                                <option value="UI/UX">UI/UX</option>
+                                <option value="DATABASE">DATABASE</option>
+                            </select>
+                            <div id="testDivJem"></div>
+                        </div>
+                    </div>
+                    
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#kategorite').multiselect();
+                        });
+                    </script>
 
-                    <div class="col-md-4 col-sm-4" style="float:right; margin-top: 30px;">
-                        <input type="submit" id="btn-perfundo" class="btn btn-custom btn-lg btn-block" value="Krijo projektin"> 
+                    <div class="col-md-4 col-sm-4" style="float:right; margin-top: 50px;">
+                        <input type="submit" id="btn-perfundo" class="btn btn-custom btn-lg btn-block" value="KRIJO PROJEKTIN"> 
                     </div>
                 </form>
                  
@@ -143,143 +166,9 @@
         </div>
     </footer>
 </div>
+    
 
-    <script type="text/javascript">
-        $(function(){
-            $("#createProject-form").validate({
-                        rules: {
-                            emri_projektit: {
-                                required: true,
-                                minlength: 10,
-                                maxlength: 60
-                            },
-                            buxheti_projektit: {
-                                required: true,
-                                minlength: 1,
-                                maxlength: 7,
-                                min: 1,
-                                max: 999999
-                            },
-                            pershkrimi_projektit: {
-                                required: true,
-                                minlength: 100,
-                                maxlength: 5000,
-                            },
-                            koha_projektit: {
-                                required: true,
-                                maxlength: 7,
-                                min: 1,
-                                max: 30
-                            },
-                            koha: {
-                                required: true
-                            }
-                        }, 
-                        messages: {
-                            emri_projektit: {
-                                required: "* Kjo fushe eshte e kerkuar!",
-                                minlength: $.validator.format("* Shtypni minimum {0} karaktere!"),
-                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!")
-                            },
-                            buxheti_projektit: {
-                                required: "* Kjo fushe eshte e kerkuar!",
-                                minlength: $.validator.format("* Shtypni minimum {0} numra!"),
-                                maxlength: $.validator.format("* Shtypni maximum {0} numra!"),
-                                min: $.validator.format("Minimum {0}"),
-                                max: $.validator.format("Maximum {0}")
-                            },
-                            pershkrimi_projektit: {
-                                required: "Kjo fushe eshte e kerkuar!",
-                                minlength: $.validator.format("* Shtypni minimum {0} karaktere!"),
-                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!")
-                            },
-                            koha_projektit: {
-                                required: "* Kjo fushe eshte e kerkuar!",
-                                maxlength: $.validator.format("* Shtypni maximum {0} karaktere!"),
-                                min: $.validator.format("Minimum {0}"),
-                                max: $.validator.format("Maximum {0}")
-                            },
-                            koha: {
-                                required: "Zgjidhni njërën prej kohëve"
-                            }
-                        }
-                    });
-
-              $(function() {
-
-                $("#createProject-form").on("submit", function(event) {
-
-                var a = $('#koha_projektit').val() + " " + $('#koha').val();
-             
-
-                 
-                event.preventDefault();
-
-                var project = {
-                  'emri_projektit': $('#emri_projektit').val(),
-                  'buxheti_projektit': $('#buxheti_projektit').val(),
-                  'pershkrimi_projektit': $('#pershkrimi_projektit').val(),
-                  'koha_projektit': a,
-                  'categoryID' : "5915be61e05cf612fcbc42c5",
-                  'userID': localStorage.getItem('user_id')
-                };
-
-            
-
-                
-
-                //window.localStorage.setItem('id_token', loginUser.token);
-
-                $.ajax({
-                    type: 'POST',
-                    url:'http://localhost:3000/projects/create',
-                    data: JSON.stringify(project),
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                 }).done(function( data ) {
-                    if(data.success) {
-                        
-                        //console.log(project._id);
-                        //window.localStorage.setItem('project_id', project.id)
-                        
-                        window.location.replace('job-feed.html');
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-              });
-
-            });
-        });
-
-        $(function(){
-           
-            $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/users/'+ localStorage.getItem('user_id'),
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                 }).done(function( data ) {
-                    if(data) {
-                        
-                        $("#emriprofil").text(data.emri);
-
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });
-
-        $('#logout').click( function() {
-            window.localStorage.clear();
-        });
-    </script>
+     <script src="js/create-project.js"></script>
 </body>
 
 </html>

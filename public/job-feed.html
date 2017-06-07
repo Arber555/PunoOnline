@@ -10,6 +10,7 @@
     <title>Job Feed</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom Fonts -->
@@ -37,21 +38,6 @@
         }
     </script>
 
-   <!-- <script>
-      function makeEditable(div){
-          div.style.border = "1px solid #000";
-          div.style.padding = "20px";
-          div.contentEditable = true;
-      }
-      function makeReadOnly(div){
-          div.style.border = "none";
-          div.style.padding = "20px";
-          div.contentEditable = false;
-          //alert("Run Ajax POST request here to save the div.innerHTML \
-          //or div.textContent to the database.");
-      }
-    </script>-->
-
 
 </head>
 
@@ -60,12 +46,14 @@
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html">FREELANCING</a>
+            <button id="menu-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-left">
-           <li ><a id="punet" href="job-feed.html">PUNET</a></li>
-        </ul> 
+    
         <ul class="nav navbar-nav navbar-right">
+            <li ><a id="punet" href="job-feed.html">PUNET</a></li>
           <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
             <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
             <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
@@ -84,7 +72,7 @@
 
 
 <div id="content">
-      
+      <div id="alertDanger"></div>
 
 </div>
 
@@ -104,89 +92,7 @@
     
 
     
-    <script type="text/javascript">
-        /*$('#content').delegate('div', 'click', function() {
-            var id = $("#project_id").attr("value");
-            console.log(id);
-        });*/
-
-       $(document).ready(function() {
-
-        
-
-
-            $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/projects/getAllProjects',
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                 }).done(function( data ) {
-                    if(data) {
-                        $.each(data, function(i, item) {
-                           /* $('#buxheti_projektit').html(item.buxheti_projektit);
-                            alert(item.buxheti_projektit);*/
-
-
-                            $("#content").append("<div class='row'>"+
-                            "<div class='col-xs-6 col-sm-6 col-md-6 col-md-offset-3'>"+
-                                "<div class='well well-sm'>"+
-                                    "<div class='row'>"+
-                                        "<div class='col-sm-12 col-md-12'>"+
-                                            "<h3 class='emri_projektit'>"+ item.emri_projektit + "</h3>"+
-                                            "<hr style='border-top: 1px white solid; border-bottom: 1px #F05F40 solid'>"+
-                                            "<h5 style='margin-bottom: 20px'>Projekti do te zgjase: <strong class='koha_projektit' >"+item.koha_projektit+"</strong>"+ "&emsp;Buxheti projektit: <strong class='buxheti_projektit' >"+item.buxheti_projektit+"</strong> €</h5>"+
-                                            "<p class='pershkrimi_projektit'>"+item.pershkrimi_projektit+"</p>"+
-                                            "<input type='hidden' id='project_id'  value="+ item._id+">"+    
-                                        "</div>"+
-                                        "<div class='col-sm-4 col-md-4'>" +
-                                          "<a href='detaje-projektit.html?"+ item._id + "' type='button' id='buttoni' class='btn btn-default'>Detaje</a>"+
-                                        "</div>"+ 
-                                    "</div>"+
-                                "</div>"+
-                            "</div>"+
-                        "</div>");
-                        });
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });
-
-
-       /*$("div").click(function() {
-        console.log($("#project_id").attr("value"));
-      }); */
-    </script>
-
-
-
-    <script type="text/javascript">
-       
-
-        $(function(){
-           
-            $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/users/'+ localStorage.getItem('user_id'),
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                 }).done(function( data ) {
-                    if(data) {
-                        $("#emriprofil").text(data.emri);
-
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });
-  
-        $('#logout').click( function() {
-            window.localStorage.clear();
-        });
-    </script>
+    <script src="js/job-feed.js"></script>
 </body>
 
 </html>

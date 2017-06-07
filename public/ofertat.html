@@ -10,6 +10,7 @@
     <title>Ofertat</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom Fonts -->
@@ -41,61 +42,98 @@
 
 <body>
     <div id="layout">
-        <nav class="navbar navbar-default">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">FREELANCING</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-left">
-               <li ><a id="punet" href="job-feed.html">PUNET</a></li>
-            </ul> 
-            <ul class="nav navbar-nav navbar-right">
-              <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
-                <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
-                <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
-
-              <li class="dropdown">
-                <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="freelancer-profile.html">PROFILI IM</a></li>
-                  <li><a href="edit-profile.html">EDITO PROFILIN</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a id="logout" href="login.html">QKYQU</a></li>
-                </ul>
-              </li>
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">FREELANCING</a>
+            <button id="menu-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+        <ul class="nav navbar-nav navbar-right">
+            <li ><a id="punet" href="job-feed.html">PUNET</a></li>
+          <li ><a id="krijimiprojektit" href="create-project.html">KRIJO PROJEKT</a></li>
+            <li ><a id="projektet" href="projects.html">PROJEKTET E MIA</a></li>
+            <li ><a id="mesazhat" href="chat-room.html">CHAT</a></li>
+            
+          <li class="dropdown">
+            <a id="profiliDropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"   aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <strong id="emriprofil"></strong> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="freelancer-profile.html">PROFILI IM</a></li>
+              <li><a href="edit-profile.html">EDITO PROFILIN</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a id="logout" href="login.html">QKYQU</a></li>
             </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+<div id="content">
+     <div class="row">
+         <div id="alertDanger"></div>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-md-offset-2">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-sm-12 col-md-12" >
+                          <h4 >Oferte nga: <a class="f-profile-a" href="#">Arber Mulla</a></h4>
+                          <div class="text-muted display-inline-block  sm-top">
+                              <span>Pagesa ne ore: <strong class='' >123</strong>€ &emsp; </span>
+
+                              <span>  Profesioni: <strong class='' >Web Developer</strong> &emsp;</span>
+                            
+                          </div>
+                          <div id="ratingDiv" class="col-sm-6 col-md-6">
+                          
+                          </div>
+                            <br/>
+                          <span class="more">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </span>  
+                          <br/>
+                          
+                      </div> 
+                      <div class="col-sm-12 col-md-12">
+                        <a href='oferta.html' type='button' id='buttoni' class='btn btn-default'>ME SHUME RRETH KESAJ OFERTE</a>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </nav>
 
+    
+    
+          <div class="col-xs-8 col-sm-8 col-md-8 col-md-offset-2">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-sm-12 col-md-12" >
+                          <h4 >Oferte nga: <a class="f-profile-a" href="#">Ragip Topalli</a></h4>
+                          <div class="text-muted display-inline-block  sm-top">
+                              <span>Pagesa ne ore: <strong class='' >112</strong>€ &emsp; </span>
 
-        <div id="content">
-           
-            
-             
-            
-    <div class='row'>
-        <div class='col-xs-10 col-sm-10 col-md-10 col-md-offset-1'>
-            <div style='background-color: white' class='well well-sm'>
-                <div class='row'>
-                    <div class='col-sm-12 col-md-12'>
-                         <h3 class='emri_projektit'>Emri projektit</h3>
-                         <hr style='border-top: 1px white solid; border-bottom: 1px #F05F40 solid'>
-                            <h5 style='margin-bottom: 20px'>Klienti ka ofruar: <strong class='koha_projektit'>10<span> €/hr</span></strong>&emsp;Buxheti projektit: <input style='text-align:right; border: 2px solid gray'class='buxheti_projektit' id='buxheti_projektit' type="number" class="form-control"  placeholder='120' width='10'/><span>€</span></h5>
-                            <textarea style='border: 2px solid gray' class='pershkrimi_projektit' class='form-control' cols='150' rows='8' placeholder="">Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di...</textarea>
-                                <input type='hidden' id='project_id'  value="item._id">
+                              <span>  Profesioni: <strong class='' >Web Developer</strong> &emsp;</span>
+                            
+                          </div>
+                          <div id="ratingDiv" class="col-sm-6 col-md-6">
+                          
+                          </div>
+                            <br/>
+                          <span class="more">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </span>  
+                          <br/>
+                          
+                      </div> 
+                      <div class="col-sm-12 col-md-12">
+                        <a href='oferta.html' type='button' id='buttoni' class='btn btn-default'>ME SHUME RRETH KESAJ OFERTE</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>
 
-                    </div>
-                    <div class='col-sm-12 col-md-12'>
-                      <a href='#' type='button' class='btn btn-default'>ME SHUME RRETH KESAJ OFERTE</a>
-                        <a href='#' type='button' class='btn btn-default pull-right' style='margin-right: 20px'>RUAJ NDRYSHIMET</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        
-        </div>
       
     <footer id="footer" >
         <div class="container">
@@ -109,94 +147,7 @@
     </footer>
 </div>
 
-    
-
-    
-    
-    
-    
-    
-    
-    
-    <script type="text/javascript">
-        
-        console.log(localStorage.getItem('Project_id'));
-    
-          //$('#content').append("Aaaaaaaaa");
-        
-        
-            /*$(function() {
-
-                $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/ofertat/getOfertaByUserIDAndProjectID/'+ window.localStorage.getItem('user_id') + '/'+ window.localStorage.getItem('project_id');,
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                 }).done(function( data ) {
-                    if(data) {
-                        $.each(data, function(i, item) {
-                            $('#content').append("<div class='row'>"+
-                                "<div class='col-xs-8 col-sm-8 col-md-8 col-md-offset-2'>"+
-                                    "<div class='well well-sm'>"+
-                                        "<div class='row'>"+
-                                            "<div class='col-sm-12 col-md-12'>"+
-                                                "<h3 class='emri_projektit'>aaaaaaa</h3>"+
-                                                 "<hr style='border-top: 1px white solid; border-bottom: 1px #F05F40 solid'>"+
-                                                 "<h5 style='margin-bottom: 20px'>Klienti ka ofruar: <strong class='shuma'>123<span> €/hr</span></strong>" + "&emsp;Buxheti projektit: <strong class='buxheti_projektit' >12333</strong> <span>€</span></h5>"+
-                                                 "<p class='pershkrimi_projektit'>Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di... Une pe boj kete ofert sepse une di...</p>"+
-                                                 "<input type='hidden' id='project_id'  value='item._id'>"+
-                                            "</div>"+
-                                        "<div class='col-sm-4 col-md-4 pull-right'>"+
-                                            "<a href='ofertat-detaje.html' type='button' id='buttoni' class='btn btn-default'>ME SHUME RRETH KESAJ OFERTE</a>"+
-                                        "</div>"+
-                                    "</div>"+
-                                "</div>"+
-                            "</div>"+
-                        "</div>");
-                        });
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });*/
-
-
-       /*$("div").click(function() {
-        console.log($("#project_id").attr("value"));*/
-          
-     
- 
-    </script>
-
-
-
-    <script type="text/javascript">
-       
-
-        $(function(){
-           
-            $.ajax({
-                    type: 'GET',
-                    url:'http://localhost:3000/users/'+ localStorage.getItem('user_id'),
-                    contentType: 'application/json',
-                    dataType: 'JSON',
-                    headers: {
-                        'Authorization': localStorage.getItem('id_token')
-                    }
-                 }).done(function( data ) {
-                    if(data) {
-                        $("#emriprofil").text(data.emri);
-
-                    } else {
-                        alert('Error: ' + data.msg);
-                    }
-                });
-            });
-  
-        $('#logout').click( function() {
-            window.localStorage.clear();
-        });
-    </script>
+    <script src="js/ofertat.js"></script>
 </body>
 
 </html>
