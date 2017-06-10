@@ -47,7 +47,7 @@ router.post('/register', function(req, res, next)
             return res.json({success: false, msg: 'Ky username ekziston.'});
         }
 
-        User.getUserByEmail(req.params.email, function(err, user){
+        User.getUserByEmail(req.body.email, function(err, user){
             if(err)
                 throw err;
             else if (user)
